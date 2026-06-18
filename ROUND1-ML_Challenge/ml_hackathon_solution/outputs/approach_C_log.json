@@ -1,0 +1,77 @@
+{
+  "proxy": {
+    "daytime_rows": 41851,
+    "nondaytime_rows": 27576,
+    "folds": 5,
+    "daytime_window_min": [
+      135,
+      825
+    ]
+  },
+  "proxy_rmse_per_model": {
+    "lgb_v1": 0.029588555478525916,
+    "lgb_deep": 0.03020156322368609,
+    "cat": 0.03116062761589316,
+    "xgb": 0.029382671327559305
+  },
+  "proxy_avg_best_iter": {
+    "lgb_v1": 499,
+    "lgb_deep": 500,
+    "cat": 499,
+    "xgb": 498
+  },
+  "lgb_variant_chosen": "v1",
+  "blend": {
+    "models": [
+      "lgb_v1",
+      "cat",
+      "xgb"
+    ],
+    "single_rmse": {
+      "lgb_v1": 0.029588555478525916,
+      "cat": 0.03116062761589316,
+      "xgb": 0.029382671327559305
+    },
+    "best_single": {
+      "model": "xgb",
+      "rmse": 0.029382671327559305
+    },
+    "blend_rmse": 0.029201040364857465,
+    "accepted": true,
+    "chosen_rmse": 0.029201040364857465,
+    "weights": {
+      "lgb_v1": 0.4059685413137164,
+      "cat": 0.0,
+      "xgb": 0.5940314586862836
+    }
+  },
+  "cvA_calibration": {
+    "best_iter": {
+      "lgb": 152,
+      "cat": 133,
+      "xgb": 190
+    },
+    "rmse": {
+      "lgb": 0.06843101782169267,
+      "cat": 0.06811710565131922,
+      "xgb": 0.06998045682206429
+    }
+  },
+  "rounds_final": {
+    "lgb": 217,
+    "cat": 196,
+    "xgb": 259
+  },
+  "submission": {
+    "rows": 41778,
+    "pred_mean": 0.1302733672857055,
+    "pred_min": 0.00584553518950041,
+    "pred_max": 1.0
+  },
+  "vs_v1": {
+    "corr_vs_v1": 0.9992112073389138,
+    "mean_diff_vs_v1": -0.0005566997356518111,
+    "mean_abs_diff_vs_v1": 0.0037979641758697155,
+    "v1_mean": 0.1308300670213573
+  }
+}

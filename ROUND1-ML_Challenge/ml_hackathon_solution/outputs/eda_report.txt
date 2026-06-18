@@ -1,0 +1,275 @@
+
+==============================================================================
+0. FILE SHAPES & COLUMNS
+==============================================================================
+train: (77299, 11)
+test : (41778, 10)
+sample_submission: (5, 2)
+
+train columns: ['Index', 'geohash', 'day', 'timestamp', 'demand', 'RoadType', 'NumberofLanes', 'LargeVehicles', 'Landmarks', 'Temperature', 'Weather']
+test  columns: ['Index', 'geohash', 'day', 'timestamp', 'RoadType', 'NumberofLanes', 'LargeVehicles', 'Landmarks', 'Temperature', 'Weather']
+sample columns: ['Index', 'demand']
+
+dtypes (train):
+Index              int64
+geohash              str
+day                int64
+timestamp            str
+demand           float64
+RoadType             str
+NumberofLanes      int64
+LargeVehicles        str
+Landmarks            str
+Temperature      float64
+Weather              str
+dtype: object
+
+==============================================================================
+1. TARGET DISTRIBUTION (demand)
+==============================================================================
+count    7.729900e+04
+mean     9.394238e-02
+std      1.421905e-01
+min      6.245650e-07
+1%       6.249566e-04
+5%       3.172399e-03
+25%      1.822723e-02
+50%      4.775994e-02
+75%      1.085951e-01
+95%      3.358566e-01
+99%      8.622936e-01
+max      1.000000e+00
+Name: demand, dtype: float64
+
+negative values : 0
+exact zeros     : 0
+NaN target      : 0
+skewness        : 3.7285
+kurtosis        : 17.3320
+skew(log1p(y))  : 2.9651
+
+==============================================================================
+2. TEMPORAL STRUCTURE (day / timestamp)
+==============================================================================
+
+[train] unique days (2): [48, 49]
+[train] day range: 48..49
+[train] unique time-of-day slots: 96 (min=0min, max=1425min)
+[train] slot granularity (min diff): 15 minutes
+
+[test] unique days (1): [49]
+[test] day range: 49..49
+[test] unique time-of-day slots: 47 (min=135min, max=825min)
+[test] slot granularity (min diff): 15 minutes
+
+day overlap train∩test: [np.int64(49)]
+days only in test (FORECAST horizon): []
+
+==============================================================================
+3. SPATIAL STRUCTURE (geohash)
+==============================================================================
+unique geohash train: 1249
+unique geohash test : 1190
+geohash in test but NOT in train (cold-start): 10
+geohash in train but NOT in test            : 69
+geohash overlap                             : 1180
+geohash string lengths (train): [np.int64(6)]
+
+rows per (geohash, day) in train: min=1, median=9, max=96
+is train a full (geohash x slot) grid per day? NO - irregular
+
+==============================================================================
+4. MISSING VALUES
+==============================================================================
+
+[train] columns with missing values:
+   Temperature          2495  ( 3.23%)
+   Weather               797  ( 1.03%)
+   RoadType              600  ( 0.78%)
+
+[test] columns with missing values:
+   Temperature          1349  ( 3.23%)
+   Weather               431  ( 1.03%)
+   RoadType              324  ( 0.78%)
+
+==============================================================================
+5. DUPLICATES
+==============================================================================
+fully duplicated rows         : 0
+duplicated on features (no Index/target): 0
+duplicated on key ['geohash', 'day', 'timestamp']: 0  (>0 means multiple demand per cell/time)
+
+==============================================================================
+6. CATEGORICAL FEATURES & SUSPECTED COLLINEARITY
+==============================================================================
+
+[RoadType] value counts (train):
+RoadType
+Residential    69230
+Street          3909
+Highway         3560
+NaN              600
+
+[Weather] value counts (train):
+Weather
+Sunny    27717
+Rainy    20824
+Foggy    20243
+Snowy     7718
+NaN        797
+
+[LargeVehicles] value counts (train):
+LargeVehicles
+Not Allowed    50673
+Allowed        26626
+
+[Landmarks] value counts (train):
+Landmarks
+Yes    52042
+No     25257
+
+[NumberofLanes] value counts (train):
+NumberofLanes
+1    27411
+2    24127
+3    23919
+4      926
+5      916
+
+-- NumberofLanes -> (LargeVehicles, Landmarks) cross-tab (train) --
+              LargeVehicles Landmarks
+NumberofLanes                        
+1               Not Allowed        No
+2               Not Allowed       Yes
+3                   Allowed       Yes
+4                   Allowed       Yes
+5                   Allowed        No
+
+unique LargeVehicles/Landmarks per NumberofLanes (1 == perfectly determined):
+               LargeVehicles  Landmarks
+NumberofLanes                          
+1                          1          2
+2                          2          2
+3                          1          1
+4                          1          1
+5                          1          1
+
+-- Are road attributes static per geohash? (nunique per geohash) --
+   RoadType        : 20.42% of geohashes have >1 distinct value
+   NumberofLanes   : 96.40% of geohashes have >1 distinct value
+   LargeVehicles   : 94.72% of geohashes have >1 distinct value
+   Landmarks       : 94.64% of geohashes have >1 distinct value
+
+==============================================================================
+7. TRAIN vs TEST FEATURE DRIFT
+==============================================================================
+
+[Temperature] train mean=16.405 std=7.360 | test mean=16.457 std=7.351
+
+[NumberofLanes] train mean=2.014 std=0.905 | test mean=2.069 std=0.989
+
+[RoadType] category share train vs test:
+             train   test
+RoadType                 
+Residential  89.56  80.84
+Street        5.06   8.16
+Highway       4.61  10.23
+NaN           0.78   0.78
+
+[Weather] category share train vs test:
+         train   test
+Weather              
+Sunny    35.86  36.09
+Rainy    26.94  26.52
+Foggy    26.19  26.57
+Snowy     9.98   9.78
+NaN       1.03   1.03
+
+[LargeVehicles] category share train vs test:
+               train   test
+LargeVehicles              
+Not Allowed    65.55  62.66
+Allowed        34.45  37.34
+
+[Landmarks] category share train vs test:
+           train   test
+Landmarks              
+Yes        67.33  67.61
+No         32.67  32.39
+
+==============================================================================
+8. TARGET RELATIONSHIPS (sanity, not modeling)
+==============================================================================
+
+mean demand by hour-of-day:
+hour
+0     0.0834
+1     0.0898
+2     0.0874
+3     0.0913
+4     0.1017
+5     0.1044
+6     0.1039
+7     0.1062
+8     0.1061
+9     0.1092
+10    0.1116
+11    0.1173
+12    0.1148
+13    0.1163
+14    0.1072
+15    0.0832
+16    0.0701
+17    0.0589
+18    0.0488
+19    0.0421
+20    0.0438
+21    0.0570
+22    0.0745
+23    0.0925
+
+mean demand by Weather:
+Weather
+Foggy    0.0934
+Rainy    0.0945
+Snowy    0.0926
+Sunny    0.0942
+
+mean demand by NumberofLanes:
+NumberofLanes
+1    0.0881
+2    0.0775
+3    0.0779
+4    0.6029
+5    0.6076
+
+mean demand by RoadType:
+RoadType
+Highway        0.6108
+Residential    0.0572
+Street         0.2732
+
+Pearson corr with demand (numeric):
+tod_min         -0.0377
+Temperature      0.0031
+NumberofLanes    0.2141
+day              0.0268
+demand           1.0000
+
+==============================================================================
+9. SAMPLE SUBMISSION FORMAT
+==============================================================================
+   Index    demand
+0      0  0.090768
+1      1  0.089885
+2      2  0.007037
+3      3  0.079087
+4      4  0.054636
+
+sample rows: 5, test rows: 41778 (match: False)
+sample Index == test Index (first 5): [0, 1, 2, 3, 4] vs [0, 1, 2, 3, 4]
+
+==============================================================================
+DONE
+==============================================================================
+Wrote eda_report.txt and eda_summary.json to outputs/

@@ -1,0 +1,585 @@
+• Should I use only the datasets provided by HackerEarth for Problem Statements 1 and 2?
+Yes. Participants must use only the datasets provided by HackerEarth for Problem Statements 1 and 2. The use of external datasets may result in disqualification and the submission will not be considered for evaluation.
+• Where and when will the onsite finale take place?
+The onsite finale will be held on July 3, 2026, at Flipkart Headquarters, Bengaluru.
+• How many teams will be shortlisted for the finale?
+Following the Prototype Phase, the top 10 teams will be shortlisted and invited to Flipkart Headquarters in Bengaluru for the final round.
+Each shortlisted team will be required to present its final solution and demonstrate a working prototype before a panel of exper
+• What if I am unable to attend the onsite finale? Will I still be eligible for prizes?
+No. To remain eligible for prizes, finalist teams must attend the onsite finale and present their solution in person before the judging panel at Flipkart Headquarters, Bengaluru.
+• What is the last date and time to submit the prototype?
+The submission deadline for the Prototype Phase is June 21, 2026, at 11:59 PM IST.
+
+
+SOME COMMETNS OF THE CANDITIATES AS AS FOLLOWS : 
+S
+syamantakbanerjee06nitdgp
+5h ago
+Why its showing team size 1 where in round 1 in my team  the size of 2
+
+
+1
+
+S
+syamantakbanerjee06nitdgp
+11h ago
+For problem statement 1 what are the documents we have to submit ppt , demo video , and all the codes or a document having links of github repository of the prototype website, demo video and ppt , or we just have to submit the backend codes ?
+
+
+0
+
+K
+karanops.dev
+14h ago
+(edited)
+Hey, in the first round me and my friend participated and done submission.
+But when I see the team size of round 2, it is saying only one??
+He receives rejection mail and I received the selection mail?
+
+
+2
+
+V
+Add a reply...
+
+S
+Shani_Singh
+15h ago
+@anushree.hn 
+Hello Ma'am,
+I had a small clarification regarding PS1 and PS2.
+For the final submission, are we expected to build a complete end-to-end solution (Frontend + Backend + AI/ML model + Dashboard), or is the evaluation primarily focused on the AI/ML model and its outputs?
+Additionally, should the prototype be fully functional with deployment-ready features, or would a working proof-of-concept demonstrating the core AI capabilities be sufficient?
+
+
+7
+
+D
+debanshughosh009
+1h ago
+@Shani_Singh @anushree.hn please clarify
+
+
+0
+
+N
+nandika.g2
+16h ago
+@anushree.hn Could you please clarify this? The team leader received the selection email, while the teammates received rejection emails. Could you let us know what this means for the team?
+
+
+1
+
+Y
+yaswithareddyk
+16h ago
+what are they expecting from the problem statement 2? do we need to submit a whole working website as prototype or just the ml model is enough? do we submit the github repo?
+
+
+1
+
+I
+iamaadarshhh
+18h ago
+@anushree.hn Can we use external API's like Google map API (free tier)?
+
+
+1
+
+A
+anushree.hn
+Admin
+18h ago
+@iamaadarshhh If you'd like to use the MapmyIndia API, you can sign up for a free account and utilize the free API credits available to build and enhance your submission.
+
+
+0
+
+G
+guptadevu321
+19h ago
+@anushree.hn Can you please give a brief over what kind of output exactly is expected from the team choosing PS1 or PS2. 
+Like what format, and what kind of output.
+
+
+0
+
+A
+anushree.hn
+Admin
+18h ago
+@guptadevu321 Problem Statements 1 and 2: Submit the required implementation/code along with supporting documentation specified in the problem statement.
+
+
+0
+
+C
+cod.er465
+16h ago
+@anushree.hn but what will i give in the demo link??
+
+
+0
+
+M
+mayank.sehgal.23cse
+19h ago
+any body tell me we not need dataset for the theme3?
+
+
+0
+
+A
+anushree.hn
+Admin
+18h ago
+@mayank.sehgal.23cse Regarding deliverables and submission format:
+
+Problem Statements 1 and 2: Submit the required implementation/code along with supporting documentation specified in the problem statement.
+Problem Statement 3: Submit a document describing your proposed approach, methodology, assumptions, and expected evaluation strategy. No working model is mandatory
+
+
+0
+
+H
+himanshu.solanki1024
+19h ago
+@anushree.hn could you please clarified about this one asap
+
+
+1
+
+A
+arnav.singha2002
+22h ago
+My team leader received an email saying that we were shortlisted for round 2 a few days ago, but today I got a mail saying I wasn't selected. Since this is a team hackathon, how is this possible? Can someone from the organizing team clarify this?
+
+
+11
+
+R
+ruthveekreddysama
+22h ago
+my second teammate got a mail saying we you been ruld out of competetion
+but i didint get i am the team lead
+
+
+7
+
+J
+jankichohalia
+22h ago
+Some people recieved a mail saying they're shortlisted and now they're getting another mail saying they're eliminated from the first round . How does that make any sense
+
+
+7
+
+A
+anushree.hn
+Admin
+17h ago
+@jankichohalia If your team leader has been shortlisted but you received a non-shortlisted email, please allow us some time to verify the details. We are currently reviewing and will share an update soon.
+
+
+0
+
+S
+saubhagyamamgain
+23h ago
+(edited)
+i can only see my name but not the name of my team, not even my teammates name? is it ok? @anushree.hn
+
+
+8
+
+K
+khushidhona06
+23h ago
+(edited)
+@saubhagyamamgain same question @anushree.hn
+
+
+0
+
+A
+almaas31327
+23h ago
+i have made an unofficial whatsapp group for better discussion between the selected teams if you want please join the group
+
+https://chat.whatsapp.com/BJwu6RLehSW1A43filKM4c?s=cl&p=a&mlu=3&amv=3
+
+
+1
+
+R
+rishinigam13041
+1d ago
+@anushree.hn This is regarding scope of datasets to be used for theme 3. Are we open to use any open source datasets for the prototyping? Or are we bound only to particular datasets. Also, anyone else have idea on the same?
+
+
+1
+
+C
+cod.er465
+1d ago
+@rishinigam13041 3rd theme has no dataset given
+
+
+0
+
+R
+rishinigam13041
+1d ago
+@cod.er465 Yup hence the question. And should we use hackerearth datasets only?
+
+
+0
+
+A
+anuragsharma03857
+1d ago
+@anushree.hn since timeline for Phase 2 is already reduced from 10 to 5 day how it's possible to make overall product (deployment, ui backend ) within this time period for statement 1 and 2 its possible???? What should we need to follow
+
+
+1
+
+D
+deekshak2103
+1d ago
+@anushree.hn for the third problem statement, the dataset link is not given. Can we use any dataset available on internet for that?
+
+
+1
+
+Y
+yadavsatvik8175
+1d ago
+@deekshak2103 did you get any info about this?
+
+
+0
+
+S
+sangrampatil5150
+1d ago
+@yadavsatvik8175 I have same question
+
+
+1
+
+D
+deekshak2103
+19h ago
+@yadavsatvik8175 not yet
+
+
+0
+
+I
+indravihar15722
+1d ago
+(edited)
+@anushree.hn Since the timeline for the prototype phase has been shortened from 10 days (June 11-21) to 6 days (June 15-21), what should we prioritize?
+
+
+1
+
+T
+tirtha.saha.pvt
+1d ago
+Hi everyone, does anyone know what we need to submit for Round 2?
+
+
+0
+
+Y
+yeshakatrodiya988
+1d ago
+I am confused about the team requirements for Round 2. Since the event overview lists the team size as 1, does this mean that only the team leader is permitted to work on the prototype, or are team members from Round 1 expected to participate as well? Could you please clarify if collaborative work is allowed or if submissions must be handled solely by the team lead?
+
+
+4
+
+K
+keerthikodali15
+1d ago
+Did they provide a dataset for the 3rd problem statement?
+
+
+0
+
+C
+cod.er465
+1d ago
+@keerthikodali15 no but they need github link and demo links in the submission. idk how its possible.
+
+
+0
+
+B
+bhavyaushas1602
+1d ago
+(edited)
+Can APIs be used ? @@anushree.hn
+
+
+0
+
+R
+rajkaran3765
+1d ago
+(edited)
+Is top 3 winner for each theme will be decided seperately , or combined for all three theme?
+
+
+11
+
+C
+cod.er465
+1d ago
+(edited)
+@anushree.hn If source code and demo link are required fields for submission... how to upload those for the 3rd problem??
+
+
+0
+
+A
+anshuaman978
+1d ago
+@anushree.hn is the use of mapmyindia allowed and if yes where can we get it? IMP
+
+
+1
+
+A
+anshuaman978
+1d ago
+for theme 1 what models are u using ?
+
+
+0
+
+P
+pink_panther
+22h ago
+@anshuaman978 theme 2 anyone?
+
+
+0
+
+A
+altuxd
+1d ago
+How to select a specific theme? Like, I want to select the 1st Theme. How can I select it?
+
+
+0
+
+S
+sbkcuddalore
+1d ago
+see in each team the team size shows solo i am not having my other teammates also can anyone pls tel abt this issue
+
+
+0
+
+N
+naqiindia
+1d ago
+@anushree.hn
+The 2nd theme requires forecasting event-related traffic impact and recommend optimal manpower, barricading, and diversion plans. But the dataset does not contain anything like this, it only contains the event itself, not the response to the event. We also need data of what action was taken by the police so that we can train model on it.
+
+
+5
+
+A
+anshikajain316
+1d ago
+Hi Team,
+
+Our team leader has received the selection email for Phase 2 of the Flipkart competition. However, when I log in and check the team status from my account, I am unable to complete any registration or take any action—only the team leader seems to have access to do so.
+
+Additionally, when I search for our team, it appears as a solo participant/team instead of showing all team members.
+
+Could you please confirm whether this is expected behavior, or if there is any issue with our team registration that needs to be resolved?
+
+Thank you for your help.
+
+
+4
+
+U
+uttambansal87
+1d ago
+@anshikajain316 All recieved the same, I think ony leader is given access to avoid multiple submissions.
+
+
+0
+
+S
+shreenathshenoy12
+1d ago
+Can we add external features for the Round 1 ? Or the features should only be derived? I am not using external dataset completely , but can i create another feature from the existing feature by referring to external dataset?
+
+
+0
+
+V
+vijaysanthoshpandiyaraj
+1d ago
+@anushree.hn
+We have a few clarification questions:
+We understand that the file size is max 50 MB but , 
+1. Is there a maximum PPT slide limit?
+2. what is the maximum duration of video, if any?
+3. What are the evaluation criteria and weightage (innovation, feasibility, technical depth, impact, scalability, etc.)?
+Thank you.
+
+
+1
+
+A
+anushree.hn
+Admin
+1d ago
+@vijaysanthoshpandiyaraj Any submission or file uploaded in each individual field must be less than 50 MB in size.
+
+
+0
+
+V
+vijaysanthoshpandiyaraj
+1d ago
+@anushree.hn Is it mandatory to use MapmyIndia api ? how can we get access to it . 
+Is there any extra credits for using it ?
+
+
+1
+
+M
+mridulbhatt840
+1d ago
+@vijaysanthoshpandiyaraj hey where was this mentioned . i saw nothing regarding mandatory use of mapmyindia api
+
+
+2
+
+W
+www.subratalodh
+1d ago
+Are only the teamleader's name shown in Teams?... I got confused cuz it's showing solo
+
+
+0
+
+C
+cod.er465
+1d ago
+@www.subratalodh yes
+
+
+0
+
+F
+f20240570
+1d ago
+@anushree.hn How do we get access to the map my india api?
+
+
+0
+
+K
+kingpratik279
+2d ago
+Only the team leader have access to this dashboard right? my team members are not able to see this dashboard of gridlock. So is it glitch or part of hackathon?
+
+
+0
+
+C
+cod.er465
+1d ago
+@kingpratik279 yes only leader will see
+
+
+0
+
+P
+parasadeepakkumar422
+2d ago
+Anyone have any idea about MapmyIndia API access?
+
+
+0
+
+H
+harshalsp746
+2d ago
+@parasadeepakkumar422 No
+
+
+0
+
+A
+anushree.hn
+Admin
+1d ago
+@parasadeepakkumar422 At this stage, we request participants to develop their prototypes using the datasets provided, as API access will not be available currently. We will check this and get back to you
+
+
+0
+
+P
+pink_panther
+2d ago
+Is a functional prototype mandatory, or is a high-fidelity interactive prototype/concept demonstration acceptable?
+
+
+0
+
+H
+hirenvyas8055
+2d ago
+@anushree.hn The third problem statement mentions that submissions may be presented as a concept note, prototype proposal, or solution framework. However, it also includes evaluation metrics such as Accuracy, Precision, Recall, F1-score, and mAP, which typically require a trained and evaluated model. Could you please clarify whether a working implementation is expected for this challenge, or whether conceptual/prototype-level submissions are acceptable? Additionally, since no dataset has been provided for this problem statement, are participants allowed to use external or publicly available datasets for evaluation?
+
+
+1
+
+G
+gauravghosh530
+1d ago
+@hirenvyas8055 HackerEarth Inc
+7:30 PM (3 minutes ago)
+to me
+
+Hello,
+
+
+
+Thank you for reaching out to us.
+
+
+
+Please note that Problem Statement 3 requires only an idea submission and does not require a working model or implementation.
+
+
+
+You are expected to propose a unique and innovative idea that addresses the stated challenge. The submission may be presented in the form of a concept note, prototype proposal, or solution framework. Your idea should be practical, clearly articulated, and demonstrate its potential to solve a real-world problem.
+
+
+
+As this problem statement does not require a working implementation, no dataset has been provided for it.
+
+
+
+If you have any other concerns, please get back to us!
+
+
+
+Regards,
+Shruti
+Technical Support Associate
+
+
+0
+

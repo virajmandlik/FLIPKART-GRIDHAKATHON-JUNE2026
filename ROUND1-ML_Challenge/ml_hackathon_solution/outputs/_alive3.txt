@@ -1,0 +1,6 @@
+﻿run_A.log size=7948 ageSec=54
+run_B.log size=5016 ageSec=918
+run_C.log size=5542 ageSec=71
+subs: submission_B.csv
+reports: approach_B_report.md
+pyCPU: 7167.25
