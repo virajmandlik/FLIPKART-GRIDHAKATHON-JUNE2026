@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ink-950 text-slate-200 font-sans antialiased;
+  background-image:
+    radial-gradient(60rem 60rem at 80% -10%, rgba(34, 211, 238, 0.06), transparent 60%),
+    radial-gradient(50rem 50rem at -10% 10%, rgba(255, 194, 0, 0.05), transparent 55%);
+  overflow-x: hidden;
+}
+
+/* Dotted grid texture */
+.grid-bg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.glass {
+  @apply bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl;
+}
+
+.glass-strong {
+  @apply bg-white/[0.05] border border-white/[0.10] backdrop-blur-2xl;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #ffc200 0%, #ffe79a 40%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-amber { box-shadow: 0 0 0 1px rgba(255, 194, 0, 0.4), 0 0 36px -6px rgba(255, 194, 0, 0.45); }
+.glow-cyan { box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.4), 0 0 36px -6px rgba(34, 211, 238, 0.5); }
+.glow-danger { box-shadow: 0 0 0 1px rgba(255, 71, 87, 0.5), 0 0 30px -6px rgba(255, 71, 87, 0.55); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #06070a; }
+::-webkit-scrollbar-thumb { background: #232838; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #2f3548; }
+
+.section-pad { @apply px-5 sm:px-8 lg:px-16 max-w-7xl mx-auto w-full; }
+
+.eyebrow {
+  @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-tech/90;
+}
