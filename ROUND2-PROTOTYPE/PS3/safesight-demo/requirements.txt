@@ -1,4 +1,0 @@
-streamlit>=1.40
-pillow>=10.0
-pandas>=2.0
-plotly>=5.20
