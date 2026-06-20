@@ -1,0 +1,191 @@
+{
+    "event_id": "evt_8f7a12",
+  
+    "camera_id": "BLR_CAM_023",
+    "junction_id": "JN_023",
+  
+    "timestamp": "2026-06-20T10:15:23Z",
+  
+    "gps": {
+      "latitude": 12.9716,
+      "longitude": 77.5946
+    },
+  
+    "pipeline_version": "3.0",
+  
+    "raw_frame": {
+      "frame_id": "frm_001245",
+      "frame_url": "s3://raw/frame_001245.jpg"
+    },
+  
+    "enhanced_frame": {
+      "frame_id": "enh_001245",
+      "frame_url": "s3://enhanced/frame_001245.jpg"
+    },
+  
+    "annotated_evidence": {
+      "annotated_image_url": "s3://evidence/annotated_001245.jpg"
+    },
+  
+    "vehicle": {
+      "type": "motorcycle",
+      "confidence": 0.97
+    },
+  
+    "license_plate": {
+      "plate_number": "KA01AB1234",
+      "confidence": 0.98,
+      "ocr_engine": "PaddleOCR",
+      "crop_url": "s3://roi/license_plate_01.jpg"
+    },
+  
+    "detected_persons": {
+      "rider_count": 3,
+      "driver_count": 1
+    },
+  
+    "roi_regions": [
+      {
+        "roi_id": "roi_plate_01",
+        "type": "license_plate",
+        "crop_url": "s3://roi/license_plate_01.jpg",
+        "bbox": [125,310,260,355]
+      },
+      {
+        "roi_id": "roi_helmet_01",
+        "type": "helmet",
+        "crop_url": "s3://roi/helmet_01.jpg",
+        "bbox": [410,120,520,240]
+      },
+      {
+        "roi_id": "roi_driver_01",
+        "type": "driver",
+        "crop_url": "s3://roi/driver_01.jpg",
+        "bbox": [350,80,600,420]
+      },
+      {
+        "roi_id": "roi_seatbelt_01",
+        "type": "seatbelt_region",
+        "crop_url": "s3://roi/seatbelt_01.jpg",
+        "bbox": [420,180,560,320]
+      },
+      {
+        "roi_id": "roi_vehicle_01",
+        "type": "vehicle",
+        "crop_url": "s3://roi/vehicle_01.jpg",
+        "bbox": [100,50,900,700]
+      },
+      {
+        "roi_id": "roi_rider_01",
+        "type": "rider",
+        "crop_url": "s3://roi/rider_01.jpg",
+        "bbox": [320,70,620,650]
+      }
+    ],
+  
+    "model_outputs": {
+      "helmet_detection": {
+        "helmet_present": false,
+        "confidence": 0.96
+      },
+  
+      "seatbelt_detection": {
+        "seatbelt_present": null,
+        "confidence": null
+      },
+  
+      "rider_counting": {
+        "rider_count": 3,
+        "confidence": 0.93
+      },
+  
+      "vehicle_classification": {
+        "vehicle_type": "motorcycle",
+        "confidence": 0.97
+      },
+  
+      "ocr": {
+        "plate_number": "KA01AB1234",
+        "confidence": 0.98
+      }
+    },
+  
+    "context_analysis": {
+      "wrong_side_driving": false,
+      "red_light_crossed": false,
+      "stop_line_crossed": false,
+      "illegal_parking": false
+    },
+  
+    "rule_engine_results": {
+      "helmet_violation": true,
+      "seatbelt_violation": false,
+      "triple_riding": true,
+      "wrong_side_violation": false,
+      "red_light_violation": false,
+      "stop_line_violation": false,
+      "illegal_parking_violation": false
+    },
+  
+    "violations": [
+      {
+        "violation_id": "vio_001",
+        "type": "helmet_violation",
+        "confidence": 0.96,
+        "severity": "HIGH"
+      },
+      {
+        "violation_id": "vio_002",
+        "type": "triple_riding",
+        "confidence": 0.94,
+        "severity": "HIGH"
+      }
+    ],
+  
+    "agentic_validation": {
+      "validated": true,
+      "consistency_score": 0.95,
+      "false_positive_risk": "LOW",
+  
+      "summary": "Motorcycle KA01AB1234 observed with three riders. Helmet not detected. Triple riding and helmet violation confirmed.",
+  
+      "explanation": [
+        "Vehicle classified as motorcycle.",
+        "Three riders detected.",
+        "Helmet ROI analyzed and no helmet detected.",
+        "OCR successfully extracted registration number.",
+        "Traffic rules confirm helmet and triple riding violations."
+      ]
+    },
+  
+    "evidence_package": {
+      "raw_frame_url": "s3://raw/frame_001245.jpg",
+  
+      "enhanced_frame_url": "s3://enhanced/frame_001245.jpg",
+  
+      "annotated_image_url": "s3://evidence/annotated_001245.jpg",
+  
+      "roi_references": [
+        "roi_plate_01",
+        "roi_helmet_01",
+        "roi_driver_01",
+        "roi_vehicle_01",
+        "roi_rider_01"
+      ]
+    },
+  
+    "overall_confidence": 0.95,
+  
+    "review_status": "AUTO_VERIFIED",
+  
+    "evidence_assets": {
+      "raw_image_available": true,
+      "enhanced_image_available": true,
+      "roi_crops_available": true,
+      "annotated_image_available": true
+    },
+  
+    "status": "READY_FOR_REPORTING",
+  
+    "next_layer": "Layer_4_Evidence_Management_Reporting_Analytics"
+  }
