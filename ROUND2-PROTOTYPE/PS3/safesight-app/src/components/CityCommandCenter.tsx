@@ -1,28 +1,42 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ZoomIn, ZoomOut, Building2, Radio, Shield, Users,
   ChevronRight, Activity,
 } from "lucide-react";
 import { Reveal, SectionTitle, Pill } from "./ui";
+import BengaluruMapSvg from "./shared/BengaluruMapSvg";
 import {
   COMMAND_CENTER, EDGE_NODES, GOV_AGENCIES, AGENCY_LINKS, ZOOM_LEVELS,
   type MapNode,
 } from "../data/bengaluruDeployment";
 
-function nodeColor(k: MapNode["kind"]) {
-  if (k === "command") return { ring: "ring-amber-brand", bg: "bg-amber-brand", text: "text-amber-brand" };
-  if (k === "agency") return { ring: "ring-violet-400", bg: "bg-violet-400", text: "text-violet-300" };
-  return { ring: "ring-cyan-tech", bg: "bg-cyan-tech", text: "text-cyan-tech" };
+export interface MapFocusRequest {
+  nodeId: string;
+  zoomIdx: number;
 }
 
-export default function CityCommandCenter() {
+interface Props {
+  focusRequest?: MapFocusRequest | null;
+}
+
+export default function CityCommandCenter({ focusRequest }: Props) {
   const [zoomIdx, setZoomIdx] = useState(0);
   const [selected, setSelected] = useState<MapNode | null>(COMMAND_CENTER);
   const [autoTour, setAutoTour] = useState(true);
 
   const zoom = ZOOM_LEVELS[zoomIdx];
-  const allNodes = [COMMAND_CENTER, ...EDGE_NODES, ...GOV_AGENCIES];
+  const allNodes = useMemo(() => [COMMAND_CENTER, ...EDGE_NODES, ...GOV_AGENCIES], []);
+
+  useEffect(() => {
+    if (!focusRequest) return;
+    const node = allNodes.find((n) => n.id === focusRequest.nodeId);
+    if (node) {
+      setSelected(node);
+      setZoomIdx(focusRequest.zoomIdx);
+      setAutoTour(false);
+    }
+  }, [focusRequest, allNodes]);
 
   useEffect(() => {
     if (!autoTour) return;
@@ -36,136 +50,64 @@ export default function CityCommandCenter() {
   const transformOrigin = `${zoom.focus.x}% ${zoom.focus.y}%`;
 
   return (
-    <section id="deployment" className="relative border-t border-white/5 py-24 sm:py-32">
+    <section id="deployment" className="relative border-t border-white/[0.06] py-16 sm:py-24">
       <div className="section-pad">
         <SectionTitle
-          kicker="Bengaluru city-wide deployment"
-          title={<>One ecosystem. <span className="text-gradient">Every junction.</span></>}
-          sub="BTP monitors violations from the Smart Enforcement Center, approves challans, and shares intelligence with Parivahan, ASTraM, BBMP, BMTC and DigiLocker — all on one secure platform."
+          kicker="Bengaluru city deployment"
+          title={<>BTP command · <span className="text-gradient">9 junctions + ASTraM</span></>}
+          sub="Silk Board, Marathahalli, Hebbal, KR Puram — edge inference at pole, signed packets to Smart Enforcement Center. Parivahan e-Challan on officer approval."
         />
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-5">
+        <div className="mt-10 grid gap-5 lg:grid-cols-5">
           <div className="lg:col-span-3">
           <Reveal>
-            <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10">
-              {/* Hero PNG base */}
-              <img
-                src="/bengaluru-deployment-hero.png"
-                alt="Bengaluru city deployment"
-                className="absolute inset-0 h-full w-full object-cover opacity-40"
-                draggable={false}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-ink-950/60 via-ink-950/30 to-ink-950/80" />
-
-              {/* Zoom controls */}
+            <div className="relative overflow-hidden rounded-lg border border-white/[0.08] bg-ink-900">
               <div className="absolute left-4 top-4 z-20 flex flex-wrap gap-2">
-                <button onClick={zoomOut} disabled={zoomIdx === 0}
-                  className="grid h-9 w-9 place-items-center rounded-lg glass hover:bg-white/10 disabled:opacity-30">
-                  <ZoomOut className="h-4 w-4" />
+                <button type="button" onClick={zoomOut} disabled={zoomIdx === 0}
+                  className="grid h-8 w-8 place-items-center rounded-md border border-white/[0.08] bg-ink-950/90 hover:bg-ink-800 disabled:opacity-30">
+                  <ZoomOut className="h-3.5 w-3.5" />
                 </button>
-                <button onClick={zoomIn} disabled={zoomIdx === ZOOM_LEVELS.length - 1}
-                  className="grid h-9 w-9 place-items-center rounded-lg glass hover:bg-white/10 disabled:opacity-30">
-                  <ZoomIn className="h-4 w-4" />
+                <button type="button" onClick={zoomIn} disabled={zoomIdx === ZOOM_LEVELS.length - 1}
+                  className="grid h-8 w-8 place-items-center rounded-md border border-white/[0.08] bg-ink-950/90 hover:bg-ink-800 disabled:opacity-30">
+                  <ZoomIn className="h-3.5 w-3.5" />
                 </button>
-                <button onClick={() => setAutoTour((a) => !a)}
-                  className={`rounded-lg px-3 py-1.5 text-[11px] font-bold ${autoTour ? "bg-amber-brand text-ink-950" : "glass text-slate-300"}`}>
-                  {autoTour ? "Auto tour ON" : "Auto tour OFF"}
+                <button type="button" onClick={() => setAutoTour((a) => !a)}
+                  className={`rounded-md px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide ${autoTour ? "bg-saffron text-ink-950" : "border border-white/[0.08] text-slate-400"}`}>
+                  {autoTour ? "Tour on" : "Tour off"}
                 </button>
               </div>
 
-              <div className="absolute right-4 top-4 z-20 rounded-lg glass px-3 py-2">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Zoom</div>
-                <div className="text-sm font-bold text-white">{zoom.label}</div>
+              <div className="absolute right-4 top-4 z-20 rounded-md border border-white/[0.08] bg-ink-950/90 px-2.5 py-1.5">
+                <div className="gov-label">Zoom</div>
+                <div className="text-xs font-semibold text-white">{zoom.label}</div>
               </div>
 
-              {/* Animated map layer */}
               <div className="relative aspect-[16/10] overflow-hidden">
                 <motion.div
-                  className="absolute inset-0"
+                  className="absolute inset-0 p-3"
                   animate={{ scale: zoom.scale }}
-                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                   style={{ transformOrigin }}
                 >
-                  {/* Connection lines SVG */}
-                  <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    {EDGE_NODES.map((e) => (
-                      <motion.line key={e.id}
-                        x1={COMMAND_CENTER.x} y1={COMMAND_CENTER.y}
-                        x2={e.x} y2={e.y}
-                        stroke="rgba(34,211,238,0.35)" strokeWidth="0.15" strokeDasharray="1 0.8"
-                        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-                        transition={{ duration: 1.5, delay: 0.2 }}
-                      />
-                    ))}
-                    {AGENCY_LINKS.map((l) => {
-                      const from = allNodes.find((n) => n.id === l.from)!;
-                      const to = allNodes.find((n) => n.id === l.to)!;
-                      return (
-                        <motion.line key={l.label}
-                          x1={from.x} y1={from.y} x2={to.x} y2={to.y}
-                          stroke="rgba(167,139,250,0.4)" strokeWidth="0.12" strokeDasharray="0.6 0.6"
-                          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                          transition={{ duration: 1, delay: 0.5 }}
-                        />
-                      );
-                    })}
-                    {/* Animated packets edge → command */}
-                    {EDGE_NODES.slice(0, 4).map((e, i) => (
-                      <motion.circle key={`pkt-${e.id}`} r="0.5" fill="#FFC200"
-                        animate={{
-                          cx: [e.x, COMMAND_CENTER.x],
-                          cy: [e.y, COMMAND_CENTER.y],
-                        }}
-                        transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.6, ease: "linear" }}
-                      />
-                    ))}
-                  </svg>
-
-                  {/* Nodes */}
-                  {allNodes.map((n) => {
-                    const c = nodeColor(n.kind);
-                    const isSel = selected?.id === n.id;
-                    return (
-                      <button
-                        key={n.id}
-                        onClick={() => { setSelected(n); setAutoTour(false); }}
-                        className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
-                        style={{ left: `${n.x}%`, top: `${n.y}%` }}
-                      >
-                        <motion.span
-                          className={`relative flex items-center justify-center rounded-full ${c.bg} ${isSel ? "ring-4 ring-white/30" : ""}`}
-                          animate={n.kind === "edge" ? { scale: [1, 1.15, 1] } : {}}
-                          transition={{ duration: 2, repeat: Infinity }}
-                          style={{
-                            width: n.kind === "command" ? 20 : n.kind === "agency" ? 12 : 14,
-                            height: n.kind === "command" ? 20 : n.kind === "agency" ? 12 : 14,
-                          }}
-                        />
-                        {n.kind === "edge" && (
-                          <span className={`absolute -inset-2 rounded-full ring-2 ${c.ring} opacity-40 animate-ping`} />
-                        )}
-                        <span className={`absolute left-1/2 mt-2 -translate-x-1/2 whitespace-nowrap rounded px-1.5 py-0.5 text-[9px] font-bold ${isSel ? "bg-white text-ink-950" : "bg-ink-950/80 text-slate-200"}`}>
-                          {n.label}
-                        </span>
-                      </button>
-                    );
-                  })}
+                  <BengaluruMapSvg
+                    selectedId={selected?.id}
+                    onNodeClick={(n) => { setSelected(n); setAutoTour(false); }}
+                    showConnections
+                  />
                 </motion.div>
               </div>
 
-              {/* Legend */}
-              <div className="absolute bottom-4 left-4 flex flex-wrap gap-3 rounded-lg glass px-3 py-2 text-[10px]">
-                <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-cyan-tech" /> Edge node</span>
-                <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-amber-brand" /> BTP command</span>
-                <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-violet-400" /> Gov agency</span>
+              <div className="absolute bottom-3 left-3 flex flex-wrap gap-2 rounded-md border border-white/[0.08] bg-ink-950/90 px-2.5 py-1.5 text-[10px] text-slate-400">
+                <span className="flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-teal" /> Edge</span>
+                <span className="flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-saffron" /> BTP HQ</span>
+                <span className="flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-violet-400" /> Agency</span>
               </div>
             </div>
 
-            {/* Zoom level pills */}
-            <div className="mt-3 flex flex-wrap gap-2">
+            <div className="mt-3 flex flex-wrap gap-1.5">
               {ZOOM_LEVELS.map((z, i) => (
-                <button key={z.id} onClick={() => { setZoomIdx(i); setAutoTour(false); }}
-                  className={`rounded-lg px-3 py-1.5 text-[11px] font-semibold transition ${i === zoomIdx ? "bg-white/15 text-white" : "text-slate-500 hover:text-slate-300"}`}>
+                <button key={z.id} type="button" onClick={() => { setZoomIdx(i); setAutoTour(false); }}
+                  className={`rounded-md px-2.5 py-1 text-[10px] font-medium transition ${i === zoomIdx ? "bg-white/10 text-white" : "text-slate-500 hover:text-slate-300"}`}>
                   {z.label}
                 </button>
               ))}
@@ -175,80 +117,68 @@ export default function CityCommandCenter() {
 
           <div className="lg:col-span-2">
           <Reveal delay={0.1}>
-            <div className="flex h-full flex-col rounded-2xl glass p-6">
-              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                <Building2 className="h-3.5 w-3.5" /> Unified command &amp; control
+            <div className="flex h-full flex-col rounded-lg border border-white/[0.08] bg-white/[0.02] p-5">
+              <div className="flex items-center gap-2">
+                <Shield className="h-3.5 w-3.5 text-saffron" />
+                <span className="gov-label">Unified command</span>
               </div>
 
               <AnimatePresence mode="wait">
                 <motion.div key={selected?.id ?? "none"}
-                  initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
                   className="mt-4 flex-1">
                   {selected && (
                     <>
-                      <h3 className="text-xl font-extrabold text-white">{selected.label}</h3>
-                      <p className="mt-1 text-sm text-slate-400">{selected.sub}</p>
+                      <h3 className="text-lg font-bold text-white">{selected.label}</h3>
+                      <p className="mt-0.5 font-mono text-xs text-slate-500">{selected.sub}</p>
 
-                      <div className="mt-5 grid grid-cols-2 gap-3">
+                      <div className="mt-4 grid grid-cols-2 gap-2">
                         {selected.cameras !== undefined && (
-                          <div className="rounded-xl bg-white/[0.03] p-3 ring-1 ring-white/[0.06]">
-                            <div className="text-2xl font-extrabold text-cyan-tech">{selected.cameras}</div>
-                            <div className="text-[10px] text-slate-500">CCTV poles</div>
-                          </div>
+                          <StatBox value={String(selected.cameras)} label="CCTV poles" accent="text-teal" />
                         )}
                         {selected.violations24h !== undefined && (
-                          <div className="rounded-xl bg-white/[0.03] p-3 ring-1 ring-white/[0.06]">
-                            <div className="text-2xl font-extrabold text-amber-brand">{selected.violations24h}</div>
-                            <div className="text-[10px] text-slate-500">Violations / 24h</div>
-                          </div>
+                          <StatBox value={String(selected.violations24h)} label="Violations / 24h" accent="text-saffron" />
                         )}
                         {selected.kind === "command" && (
                           <>
-                            <div className="rounded-xl bg-white/[0.03] p-3 ring-1 ring-white/[0.06]">
-                              <div className="text-2xl font-extrabold text-white">8</div>
-                              <div className="text-[10px] text-slate-500">Edge zones live</div>
-                            </div>
-                            <div className="rounded-xl bg-white/[0.03] p-3 ring-1 ring-white/[0.06]">
-                              <div className="text-2xl font-extrabold text-ok">6</div>
-                              <div className="text-[10px] text-slate-500">Agency integrations</div>
-                            </div>
+                            <StatBox value="9" label="Edge zones" accent="text-white" />
+                            <StatBox value="6" label="Agency links" accent="text-ok" />
                           </>
                         )}
                       </div>
 
                       {selected.kind === "command" && (
-                        <div className="mt-5 space-y-2">
-                          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Officer actions</div>
-                          {["Review violation queue", "Approve / reject evidence", "Issue e-Challan via Parivahan", "Export ASTraM congestion report"].map((a) => (
-                            <div key={a} className="flex items-center gap-2 rounded-lg bg-cyan-tech/[0.06] px-3 py-2 text-xs text-slate-200 ring-1 ring-cyan-tech/20">
-                              <ChevronRight className="h-3 w-3 text-cyan-tech" /> {a}
+                        <div className="mt-4 space-y-1.5">
+                          <div className="gov-label">Officer actions</div>
+                          {["Review violation queue", "Approve evidence · KA plate", "Issue e-Challan · Parivahan", "Export ASTraM report"].map((a) => (
+                            <div key={a} className="flex items-center gap-2 rounded-md border border-white/[0.06] bg-ink-900/50 px-2.5 py-2 text-xs text-slate-300">
+                              <ChevronRight className="h-3 w-3 shrink-0 text-teal" /> {a}
                             </div>
                           ))}
                         </div>
                       )}
 
                       {selected.kind === "agency" && (
-                        <div className="mt-5 rounded-xl bg-violet-500/[0.08] p-4 ring-1 ring-violet-400/30">
-                          <div className="flex items-center gap-2 text-xs font-bold text-violet-300">
-                            <Users className="h-4 w-4" /> Inter-agency collaboration
+                        <div className="mt-4 rounded-md border border-violet-400/20 bg-violet-500/[0.06] p-3">
+                          <div className="flex items-center gap-2 text-xs font-semibold text-violet-300">
+                            <Users className="h-3.5 w-3.5" /> Inter-agency
                           </div>
-                          <p className="mt-2 text-xs leading-relaxed text-slate-400">
+                          <p className="mt-1.5 text-xs leading-relaxed text-slate-400">
                             {AGENCY_LINKS.find((l) => l.to === selected.id)?.label ?? "Data sync"} via{" "}
-                            {AGENCY_LINKS.find((l) => l.to === selected.id)?.protocol ?? "secure API"}.
-                            Shared on need-to-know basis under DPDP 2023.
+                            {AGENCY_LINKS.find((l) => l.to === selected.id)?.protocol ?? "secure API"} · DPDP 2023.
                           </p>
                         </div>
                       )}
 
                       {selected.kind === "edge" && (
-                        <div className="mt-5 space-y-2">
-                          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Edge pipeline</div>
-                          <div className="flex flex-wrap gap-1.5 text-[10px]">
-                            {["Ingest", "Detect", "Track", "Classify", "ANPR", "Privacy", "Evidence"].map((s) => (
-                              <span key={s} className="rounded bg-cyan-tech/10 px-2 py-1 font-mono text-cyan-tech">{s}</span>
+                        <div className="mt-4 space-y-2">
+                          <div className="gov-label">Edge pipeline</div>
+                          <div className="flex flex-wrap gap-1 text-[10px]">
+                            {["Ingest", "Enhance", "Detect", "OCR", "Evidence"].map((s) => (
+                              <span key={s} className="rounded border border-teal/20 bg-teal/5 px-1.5 py-0.5 font-mono text-teal">{s}</span>
                             ))}
                           </div>
-                          <Pill tone="cyan"><Radio className="h-3 w-3" /> Jetson Orin · ~28 FPS · raw video local</Pill>
+                          <Pill tone="cyan"><Radio className="h-3 w-3" /> Jetson Orin · raw video local</Pill>
                         </div>
                       )}
                     </>
@@ -256,23 +186,24 @@ export default function CityCommandCenter() {
                 </motion.div>
               </AnimatePresence>
 
-              <div className="mt-6 border-t border-white/10 pt-4">
-                <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                  <Shield className="h-3.5 w-3.5" /> Gov ecosystem
+              <div className="mt-5 border-t border-white/[0.06] pt-4">
+                <div className="flex items-center gap-2">
+                  <Building2 className="h-3.5 w-3.5 text-slate-500" />
+                  <span className="gov-label">Gov ecosystem</span>
                 </div>
-                <div className="mt-2 flex flex-wrap gap-2">
+                <div className="mt-2 flex flex-wrap gap-1.5">
                   {GOV_AGENCIES.map((a) => (
-                    <button key={a.id} onClick={() => setSelected(a)}
-                      className="rounded-lg bg-white/[0.04] px-2.5 py-1 text-[10px] font-semibold text-slate-300 ring-1 ring-white/10 hover:ring-violet-400/40">
+                    <button key={a.id} type="button" onClick={() => setSelected(a)}
+                      className={`rounded-md px-2 py-0.5 text-[10px] font-medium ring-1 transition ${selected?.id === a.id ? "bg-violet-500/15 text-violet-200 ring-violet-400/30" : "bg-ink-900 text-slate-400 ring-white/[0.06] hover:text-slate-200"}`}>
                       {a.label}
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center gap-2 text-[10px] text-slate-500">
+              <div className="mt-3 flex items-center gap-2 text-[10px] text-slate-500">
                 <Activity className="h-3 w-3 text-ok" />
-                <span className="text-ok font-semibold">LIVE</span> · 581 edge nodes target · Phase 1 pilot: 8 junctions
+                <span className="font-semibold text-ok">LIVE</span> · Phase 1 pilot · ASTraM sync
               </div>
             </div>
           </Reveal>
@@ -280,5 +211,14 @@ export default function CityCommandCenter() {
         </div>
       </div>
     </section>
+  );
+}
+
+function StatBox({ value, label, accent }: { value: string; label: string; accent: string }) {
+  return (
+    <div className="rounded-md border border-white/[0.06] bg-ink-900/40 p-2.5">
+      <div className={`text-xl font-bold ${accent}`}>{value}</div>
+      <div className="text-[10px] text-slate-500">{label}</div>
+    </div>
   );
 }

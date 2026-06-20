@@ -18,18 +18,18 @@ function Node({ name, desc, tone }: { name: string; desc: string; tone: "edge" |
 
 export default function Architecture() {
   return (
-    <section id="architecture" className="relative py-24 sm:py-32 grid-bg">
+    <section id="architecture" className="relative border-t border-white/[0.06] py-20 sm:py-28">
       <div className="section-pad">
         <SectionTitle
           kicker="Deployment architecture"
           title={<>Edge-first. <span className="text-gradient">Cloud-assisted.</span></>}
-          sub="Inference happens at the camera pole. Only signed violation packets ever leave the junction — that is the privacy, bandwidth and sovereignty win in one decision."
+          sub="Inference at the camera pole — Silk Board, Hebbal, KR Puram. Only signed violation packets egress to BTP Smart Enforcement Center."
         />
 
-        <div className="mt-14 grid items-stretch gap-5 lg:grid-cols-[1fr_auto_1fr]">
+        <div className="mt-12 grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr]">
           {/* EDGE */}
           <Reveal>
-            <div className="h-full rounded-2xl glass p-6">
+            <div className="h-full gov-card p-5">
               <div className="flex items-center gap-3">
                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-cyan-tech/15 ring-1 ring-cyan-tech/40"><Cpu className="h-5 w-5 text-cyan-tech" /></span>
                 <div>
@@ -69,7 +69,7 @@ export default function Architecture() {
 
           {/* CLOUD */}
           <Reveal delay={0.1}>
-            <div className="h-full rounded-2xl glass p-6">
+            <div className="h-full gov-card p-5">
               <div className="flex items-center gap-3">
                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-amber-brand/15 ring-1 ring-amber-brand/40"><Cloud className="h-5 w-5 text-amber-brand" /></span>
                 <div>
@@ -100,7 +100,7 @@ export default function Architecture() {
               { icon: Database, t: "WORM evidence", d: "object-lock · 5-yr audit" },
               { icon: Activity, t: "Observability", d: "OTel · Prom · Grafana" },
             ].map((x) => (
-              <div key={x.t} className="flex items-center gap-3 rounded-xl glass px-4 py-3">
+              <div key={x.t} className="flex items-center gap-3 gov-card px-4 py-3">
                 <x.icon className="h-4 w-4 text-slate-300" />
                 <div>
                   <div className="text-xs font-bold text-white">{x.t}</div>

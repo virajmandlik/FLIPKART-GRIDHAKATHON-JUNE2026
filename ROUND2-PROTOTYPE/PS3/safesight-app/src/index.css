@@ -13,43 +13,89 @@ html {
 body {
   @apply bg-ink-950 text-slate-200 font-sans antialiased;
   background-image:
-    radial-gradient(60rem 60rem at 80% -10%, rgba(34, 211, 238, 0.06), transparent 60%),
-    radial-gradient(50rem 50rem at -10% 10%, rgba(255, 194, 0, 0.05), transparent 55%);
+    radial-gradient(50rem 50rem at 85% -5%, rgba(20, 184, 166, 0.04), transparent 55%),
+    radial-gradient(40rem 40rem at -5% 15%, rgba(255, 153, 51, 0.035), transparent 50%);
   overflow-x: hidden;
 }
 
-/* Dotted grid texture */
+/* Dotted grid texture — subtle */
 .grid-bg {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 22px 22px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
+/* Premium gov-tech surfaces */
 .glass {
-  @apply bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl;
+  @apply border border-white/[0.08] bg-white/[0.025];
 }
 
 .glass-strong {
-  @apply bg-white/[0.05] border border-white/[0.10] backdrop-blur-2xl;
+  @apply border border-white/[0.10] bg-white/[0.04];
+}
+
+.gov-card {
+  @apply rounded-lg border border-white/[0.08] bg-white/[0.02];
+}
+
+.gov-label {
+  @apply text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500;
+}
+
+.enforcement-console {
+  @apply relative;
+}
+
+.enforcement-console::before {
+  content: "ನಮ್ಮ ಬೆಂಗಳೂರು";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2rem, 8vw, 4rem);
+  color: rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+  user-select: none;
 }
 
 .text-gradient {
-  background: linear-gradient(120deg, #ffc200 0%, #ffe79a 40%, #22d3ee 100%);
+  background: linear-gradient(120deg, #ff9933 0%, #ffc966 45%, #14b8a6 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.glow-amber { box-shadow: 0 0 0 1px rgba(255, 194, 0, 0.4), 0 0 36px -6px rgba(255, 194, 0, 0.45); }
-.glow-cyan { box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.4), 0 0 36px -6px rgba(34, 211, 238, 0.5); }
-.glow-danger { box-shadow: 0 0 0 1px rgba(255, 71, 87, 0.5), 0 0 30px -6px rgba(255, 71, 87, 0.55); }
+/* Reduced glow — use sparingly */
+.glow-amber {
+  box-shadow: 0 0 0 1px rgba(255, 153, 51, 0.25);
+}
+.glow-cyan {
+  box-shadow: 0 0 0 1px rgba(20, 184, 166, 0.25);
+}
+.glow-danger {
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.3);
+}
 
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: #06070a; }
-::-webkit-scrollbar-thumb { background: #232838; border-radius: 6px; }
+.stamp-verified {
+  @apply inline-block border-2 border-ok/60 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-widest text-ok;
+  transform: rotate(-3deg);
+}
+
+.folder-tab {
+  @apply relative rounded-t-lg border border-b-0 border-white/[0.10] bg-ink-900 px-4 py-2 text-xs font-semibold text-slate-300;
+}
+
+.folder-tab-active {
+  @apply border-saffron/30 bg-ink-800 text-white;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #0a0b0f; }
+::-webkit-scrollbar-thumb { background: #232838; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #2f3548; }
 
 .section-pad { @apply px-5 sm:px-8 lg:px-16 max-w-7xl mx-auto w-full; }
 
 .eyebrow {
-  @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-tech/90;
+  @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-teal/80;
 }

@@ -4,15 +4,39 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: { 950: "#06070A", 900: "#0A0C12", 800: "#11141C", 700: "#181C28" },
+        ink: { 950: "#0A0B0F", 900: "#0E1016", 800: "#141820", 700: "#1A1F2A" },
         amber: { brand: "#FFC200" },
         cyan: { tech: "#22D3EE" },
+        saffron: {
+          DEFAULT: "#FF9933",
+          light: "#FFB366",
+          dark: "#E67E00",
+        },
+        teal: {
+          DEFAULT: "#14B8A6",
+          light: "#2DD4BF",
+          dark: "#0D9488",
+        },
+        traffic: {
+          red: "#EF4444",
+          amber: "#F59E0B",
+          green: "#22C55E",
+        },
+        risk: {
+          low: "#22C55E",
+          medium: "#F59E0B",
+          high: "#EF4444",
+        },
         danger: "#FF4757",
         ok: "#22C55E",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
         mono: ["'JetBrains Mono'", "ui-monospace", "monospace"],
+      },
+      boxShadow: {
+        "glow-saffron": "0 0 24px -4px rgba(255, 153, 51, 0.45)",
+        "glow-teal": "0 0 24px -4px rgba(20, 184, 166, 0.45)",
       },
       keyframes: {
         flow: { "0%": { strokeDashoffset: 24 }, "100%": { strokeDashoffset: 0 } },
