@@ -40,6 +40,7 @@ export const EDGE_NODES: MapNode[] = [
   { id: "richmond", kind: "edge", label: "Richmond Circle", sub: "KA-Richmond-05", x: 38, y: 52, cameras: 2, violations24h: 31, status: "live" },
   { id: "brigade", kind: "edge", label: "Brigade Road", sub: "KA-Brigade-09", x: 50, y: 54, cameras: 3, violations24h: 48, status: "live" },
   { id: "indiranagar", kind: "edge", label: "Indiranagar", sub: "KA-Indiranagar-04", x: 62, y: 50, cameras: 4, violations24h: 38, status: "live" },
+  { id: "marathahalli", kind: "edge", label: "Marathahalli", sub: "KA-Marth-04", x: 66, y: 58, cameras: 4, violations24h: 95, status: "live" },
   { id: "electronic-city", kind: "edge", label: "Electronic City", sub: "KA-ECity-02", x: 58, y: 88, cameras: 8, violations24h: 112, status: "live" },
 ];
 

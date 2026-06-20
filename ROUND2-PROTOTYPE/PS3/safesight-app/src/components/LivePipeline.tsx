@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { Play, Pause, ChevronLeft, ChevronRight, Eye, Server } from "lucide-react";
 import { STEPS } from "../data/pipeline";
 import { getScenario, SCENARIOS } from "../data/scenarios";
@@ -89,7 +89,7 @@ export default function LivePipeline({ scenarioId, onScenarioChange }: Props) {
         </div>
 
         <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-white/10">
-          <motion.div className="h-full bg-gradient-to-r from-cyan-tech to-amber-brand"
+          <m.div className="h-full bg-gradient-to-r from-cyan-tech to-amber-brand"
             animate={{ width: `${((active + 1) / STEPS.length) * 100}%` }} transition={{ duration: 0.4 }} />
         </div>
 
@@ -113,7 +113,7 @@ export default function LivePipeline({ scenarioId, onScenarioChange }: Props) {
               </div>
 
               <AnimatePresence mode="wait">
-                <motion.div key={`${scenario.id}-${step.id}`}
+                <m.div key={`${scenario.id}-${step.id}`}
                   initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }} className="mt-6 space-y-4">
                   <div className="rounded-xl bg-cyan-tech/[0.06] p-4 ring-1 ring-cyan-tech/20">
@@ -128,7 +128,7 @@ export default function LivePipeline({ scenarioId, onScenarioChange }: Props) {
                     </div>
                     <p className="mt-1.5 text-sm leading-relaxed text-slate-200">{backText}</p>
                   </div>
-                </motion.div>
+                </m.div>
               </AnimatePresence>
 
               <div className="mt-auto pt-6">

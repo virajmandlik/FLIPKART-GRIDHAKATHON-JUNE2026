@@ -1,0 +1,187 @@
+{
+    "event_id": "evt_8f7a12",
+  
+    "camera_id": "BLR_CAM_023",
+    "junction_id": "JN_023",
+  
+    "timestamp": "2026-06-20T10:15:23Z",
+  
+    "gps": {
+      "latitude": 12.9716,
+      "longitude": 77.5946
+    },
+  
+    "pipeline_version": "2.1",
+  
+    "raw_frame": {
+      "frame_id": "frm_001245",
+      "frame_url": "s3://raw/frame_001245.jpg"
+    },
+  
+    "enhanced_frame": {
+      "frame_id": "enh_001245",
+      "frame_url": "s3://enhanced/enh_001245.jpg"
+    },
+  
+    "quality_assessment": {
+      "quality_score_before": 0.42,
+      "quality_score_after": 0.91,
+      "improvement_percent": 116.6,
+  
+      "detected_issues": [
+        "motion_blur",
+        "low_resolution",
+        "compression_artifacts"
+      ]
+    },
+  
+    "enhancement_pipeline": {
+      "restormer": {
+        "applied": true,
+        "operations": [
+          "denoising",
+          "deblurring",
+          "deraining"
+        ]
+      },
+  
+      "real_esrgan": {
+        "applied": true,
+        "operations": [
+          "super_resolution",
+          "detail_recovery",
+          "edge_sharpening"
+        ],
+        "scale_factor": "4x"
+      }
+    },
+  
+    "object_detections": [
+      {
+        "detection_id": "det_vehicle_01",
+        "class": "motorcycle",
+        "confidence": 0.97,
+        "bbox": [100, 50, 900, 700]
+      },
+  
+      {
+        "detection_id": "det_rider_01",
+        "class": "rider",
+        "confidence": 0.95,
+        "bbox": [320, 70, 620, 650]
+      },
+  
+      {
+        "detection_id": "det_driver_01",
+        "class": "driver",
+        "confidence": 0.94,
+        "bbox": [350, 80, 600, 420]
+      },
+  
+      {
+        "detection_id": "det_plate_01",
+        "class": "license_plate",
+        "confidence": 0.98,
+        "bbox": [125, 310, 260, 355]
+      }
+    ],
+  
+    "roi_regions": [
+      {
+        "roi_id": "roi_plate_01",
+        "type": "license_plate",
+  
+        "source_detection": "det_plate_01",
+  
+        "crop_url": "s3://roi/license_plate_01.jpg",
+  
+        "bbox": [125, 310, 260, 355],
+  
+        "enhancement_applied": true
+      },
+  
+      {
+        "roi_id": "roi_helmet_01",
+        "type": "helmet",
+  
+        "source_detection": "det_rider_01",
+  
+        "crop_url": "s3://roi/helmet_01.jpg",
+  
+        "bbox": [410, 120, 520, 240],
+  
+        "enhancement_applied": true
+      },
+  
+      {
+        "roi_id": "roi_driver_01",
+        "type": "driver",
+  
+        "source_detection": "det_driver_01",
+  
+        "crop_url": "s3://roi/driver_01.jpg",
+  
+        "bbox": [350, 80, 600, 420],
+  
+        "enhancement_applied": true
+      },
+  
+      {
+        "roi_id": "roi_seatbelt_01",
+        "type": "seatbelt_region",
+  
+        "source_detection": "det_driver_01",
+  
+        "crop_url": "s3://roi/seatbelt_01.jpg",
+  
+        "bbox": [420, 180, 560, 320],
+  
+        "enhancement_applied": true
+      },
+  
+      {
+        "roi_id": "roi_vehicle_01",
+        "type": "vehicle",
+  
+        "source_detection": "det_vehicle_01",
+  
+        "crop_url": "s3://roi/vehicle_01.jpg",
+  
+        "bbox": [100, 50, 900, 700],
+  
+        "enhancement_applied": true
+      },
+  
+      {
+        "roi_id": "roi_rider_01",
+        "type": "rider",
+  
+        "source_detection": "det_rider_01",
+  
+        "crop_url": "s3://roi/rider_01.jpg",
+  
+        "bbox": [320, 70, 620, 650],
+  
+        "enhancement_applied": true
+      }
+    ],
+  
+    "evidence_assets": {
+      "raw_image_available": true,
+      "enhanced_image_available": true,
+      "roi_crops_available": true
+    },
+  
+    "status": "READY_FOR_VIOLATION_DETECTION",
+  
+    "next_layer": "Layer_3_AI_Violation_Detection",
+  
+    "layer_3_tasks": [
+      "helmet_detection",
+      "seatbelt_detection",
+      "vehicle_classification",
+      "rider_counting",
+      "number_plate_ocr",
+      "traffic_violation_classification"
+    ]
+  }

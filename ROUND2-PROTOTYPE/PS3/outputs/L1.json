@@ -1,0 +1,35 @@
+{
+  "event_id": "evt_8f7a12",
+  "camera_id": "BLR_CAM_023",
+  "junction_id": "JN_023",
+
+  "timestamp": "2026-06-20T10:15:23Z",
+
+  "frame": {
+    "frame_id": "frm_001245",
+    "frame_url": "s3://safesight-evidence/2026/06/20/frm_001245.jpg",
+    "resolution": "1920x1080"
+  },
+
+  "selection": {
+    "original_fps": 30,
+    "sampling_fps": 3,
+    "motion_score": 0.87,
+    "duplicate_score": 0.04,
+    "reason": [
+      "motion_detected",
+      "unique_frame"
+    ]
+  },
+
+  "location": {
+    "latitude": 12.9716,
+    "longitude": 77.5946
+  },
+
+  "status": "READY_FOR_ENHANCEMENT",
+
+  "pipeline": {
+    "version": "1.0"
+  }
+}
