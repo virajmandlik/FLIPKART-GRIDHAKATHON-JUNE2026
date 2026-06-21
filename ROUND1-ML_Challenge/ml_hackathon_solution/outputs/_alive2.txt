@@ -1,5 +1,0 @@
-﻿run_A.log  size=5928  ageSec=22
-run_B.log  size=2172  ageSec=67
-run_C.log  size=1694  ageSec=52
-subs: 
-pyCPU: 4435.34375

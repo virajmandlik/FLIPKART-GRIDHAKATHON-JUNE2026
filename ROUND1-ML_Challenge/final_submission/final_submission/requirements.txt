@@ -1,9 +1,0 @@
-# Gridlock 2.0 -- reproduce.py dependencies.
-# Pinned to >= the versions used to produce the winning submission_BC.csv
-# (Python 3.14.3 on Windows). Newer patch releases are expected to work; for a
-# bit-exact reproduction, install these exact versions.
-numpy>=2.4.4
-pandas>=3.0.3
-scikit-learn>=1.8.0
-lightgbm>=4.6.0
-xgboost>=3.2.0
