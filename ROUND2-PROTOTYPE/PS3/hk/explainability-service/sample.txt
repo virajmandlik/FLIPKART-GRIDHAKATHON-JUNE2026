@@ -1,0 +1,35 @@
+aws configure
+REM enter this laptop's IAM access key, secret, region ap-south-1, json
+
+set REGION=ap-south-1
+set ACCOUNT_ID=896784231246
+set REPO=explainability-service
+
+aws ecr get-login-password --region %REGION% | docker login --username AWS --password-stdin %ACCOUNT_ID%.dkr.ecr.%REGION%.amazonaws.com
+
+docker build -t %REPO% .
+docker tag %REPO%:latest %ACCOUNT_ID%.dkr.ecr.%REGION%.amazonaws.com/%REPO%:latest
+docker push %ACCOUNT_ID%.dkr.ecr.%REGION%.amazonaws.com/%REPO%:latest
+
+
+aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin "$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com"
+
+docker build -t $REPO .
+
+docker tag "${REPO}:latest" "$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/${REPO}:latest"
+
+docker push "$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/${REPO}:latest"
+
+https://46jtys67os6adenkbolwcadt340lfpxq.lambda-url.ap-south-1.on.aws/docs#/
+
+{
+  "violation_type": "Red-Light Violation",
+  "confidence": "96%",
+  "vehicle_number": "MH12AB1234",
+  "location": "Junction 7",
+  "raw_output": {"signal": "red", "vehicle_crossed_line": true, "distance_crossed": "1.8m"},
+  "persist": true
+}
+
+
+{"violation_type": "Helmet Non-Compliance", "confidence": "93%", "vehicle_number": "MH12XY9999", "location": "Queue Test", "persist": true}

@@ -1,0 +1,15 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+tests/
+data/
+.git/
+.gitignore
+.env
+.env.example
+.aws-sam/
+README.md
+scripts/
+*.md

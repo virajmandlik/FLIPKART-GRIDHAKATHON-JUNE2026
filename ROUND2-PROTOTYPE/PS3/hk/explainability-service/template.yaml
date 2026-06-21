@@ -1,0 +1,103 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Explainability Service - reasoning chains, confidence, annotated proofs.
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 1024
+    Runtime: python3.12
+
+Parameters:
+  MongoUri:
+    Type: String
+    NoEcho: true
+    Description: MongoDB connection URI (e.g. MongoDB Atlas SRV string).
+  MongoDb:
+    Type: String
+    Default: explainability
+    Description: MongoDB database name.
+  ProofBucketName:
+    Type: String
+    Description: S3 bucket for annotated proof images.
+
+Resources:
+  # Dead-letter queue: messages that fail processing repeatedly land here.
+  ViolationDLQ:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: violation-events-dlq
+      MessageRetentionPeriod: 1209600  # 14 days
+
+  # Main queue: the Violation Intelligence Engine sends ViolationEvents here.
+  ViolationQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: violation-events
+      VisibilityTimeout: 180  # >= 6x the function timeout (30s)
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt ViolationDLQ.Arn
+        maxReceiveCount: 3  # after 3 failed attempts, send to DLQ
+
+  ProofBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref ProofBucketName
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  ExplainabilityFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: python3.12
+    Properties:
+      Handler: app.main.handler
+      CodeUri: .
+      Environment:
+        Variables:
+          MONGO_URI: !Ref MongoUri
+          MONGO_DB: !Ref MongoDb
+          STORAGE_BACKEND: s3
+          S3_BUCKET: !Ref ProofBucketName
+          LOCAL_STORAGE_DIR: /tmp/proofs
+          AUTO_APPROVAL_THRESHOLD: "90"
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref ProofBucketName
+        - SQSPollerPolicy:
+            QueueName: !GetAtt ViolationQueue.QueueName
+      Events:
+        Api:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+        Queue:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt ViolationQueue.Arn
+            BatchSize: 10
+            MaximumBatchingWindowInSeconds: 5
+            # Enables partial batch failure reporting (batchItemFailures).
+            FunctionResponseTypes:
+              - ReportBatchItemFailures
+
+Outputs:
+  ApiUrl:
+    Description: Base URL of the Explainability Service API.
+    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com"
+  ProofBucket:
+    Description: S3 bucket holding annotated proof images.
+    Value: !Ref ProofBucketName
+  QueueUrl:
+    Description: URL of the violation events queue (send ViolationEvents here).
+    Value: !Ref ViolationQueue
+  QueueArn:
+    Description: ARN of the violation events queue.
+    Value: !GetAtt ViolationQueue.Arn
+  DeadLetterQueueUrl:
+    Description: URL of the dead-letter queue for failed messages.
+    Value: !Ref ViolationDLQ
