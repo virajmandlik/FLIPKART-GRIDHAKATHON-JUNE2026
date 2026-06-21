@@ -37,7 +37,7 @@ export default function PdfEvidenceMock({ compact }: Props) {
       data.agentic_validation.summary,
       "",
       "Officer sign-off: _________________________  (BTP)",
-      "SafeSight EN · UVH-26 · No auto-fines",
+      "Drishaak · UVH-26 · No auto-fines",
     ],
     [data, evidence]
   );

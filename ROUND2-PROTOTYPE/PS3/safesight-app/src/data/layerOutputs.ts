@@ -153,7 +153,7 @@ export const LAYER1_OUTPUT: Layer1Output = {
   timestamp: "2026-06-20T10:15:23Z",
   frame: {
     frame_id: "frm_001245",
-    frame_url: "s3://safesight-evidence/2026/06/20/frm_001245.jpg",
+    frame_url: "s3://drishaak-evidence/2026/06/20/frm_001245.jpg",
     resolution: "1920x1080",
   },
   selection: {

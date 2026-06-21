@@ -1,4 +1,4 @@
-/** Bengaluru city-wide SafeSight EN deployment map data (normalized 0–100 coords). */
+/** Bengaluru city-wide Drishaak deployment map data (normalized 0–100 coords). */
 
 export type NodeKind = "edge" | "command" | "agency";
 

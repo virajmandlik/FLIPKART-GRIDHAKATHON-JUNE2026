@@ -1,4 +1,4 @@
-# SafeSight EN — Demo Implementation Log
+# Drishaak — Demo Implementation Log
 
 
 
@@ -10,7 +10,7 @@
 
 
 
-Living tracker for the SafeSight EN frontend demo upgrade (PS3 hackathon prototype). P0 ships tab navigation, pipeline journey hero, Vishal widgets subset, architecture lightbox, and typed layer JSON data. P1 adds L4/L5 panels, evidence PDF export, shared polish, scenario branches, and Command Center merge. P2 adds demo polish: SVG scenario visuals, classic/journey toggle, judge tour, VLM recheck mock, keyboard shortcuts, and bundle optimizations.
+Living tracker for the Drishaak frontend demo upgrade (PS3 hackathon prototype). P0 ships tab navigation, pipeline journey hero, Vishal widgets subset, architecture lightbox, and typed layer JSON data. P1 adds L4/L5 panels, evidence PDF export, shared polish, scenario branches, and Command Center merge. P2 adds demo polish: SVG scenario visuals, classic/journey toggle, judge tour, VLM recheck mock, keyboard shortcuts, and bundle optimizations.
 
 
 

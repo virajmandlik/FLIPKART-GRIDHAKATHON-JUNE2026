@@ -12,7 +12,7 @@ export default function Footer() {
               <span className="grid h-9 w-9 place-items-center rounded-xl bg-amber-brand/15 ring-1 ring-amber-brand/40">
                 <Radar className="h-5 w-5 text-amber-brand" />
               </span>
-              <span className="text-lg font-extrabold text-white">SafeSight<span className="text-amber-brand"> EN</span></span>
+              <span className="text-lg font-extrabold text-white">Drish<span className="text-amber-brand">aak</span></span>
             </div>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-400">
               Responsible Edge Enforcement for Bengaluru Traffic Police. A privacy-first,
@@ -36,7 +36,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-white/[0.06] pt-6 text-xs text-slate-500 sm:flex-row sm:items-center">
-          <span>© 2026 SafeSight EN · Viraj's Team</span>
+          <span>© 2026 Drishaak · Viraj's Team</span>
           <span className="font-mono">Edge-first · Human-in-the-loop · DPDP + BSA compliant</span>
         </div>
       </div>

@@ -2,7 +2,7 @@
 
 ## Gridlock Hackathon 2.0 · Round 2 · Theme 3
 
-**Project codename:** SafeSight EN — Responsible Edge Enforcement Node for Bengaluru  
+**Project codename:** Drishaak — Responsible Edge Enforcement Node for Bengaluru  
 **Date:** 18 Jun 2026 (updated 18 Jun 11:30 PM)  
 **Deadline:** 21 Jun 2026, 23:59 IST  
 **Team decision:** PS3 — Automated Photo Identification & Classification for Traffic Violations
@@ -71,7 +71,7 @@ We propose an **India-first, legally defensible, edge-deployable** computer visi
 5. Uses **Bengaluru-specific AI** (UVH-26 from IISc + BTP Safe City cameras context)
 
 **One-line pitch for judges:**  
-*SafeSight EN turns Bengaluru's 9,000+ camera feeds into trustworthy, contactless enforcement — with India-tuned detection, human review, and legally admissible evidence.*
+*Drishaak turns Bengaluru's 9,000+ camera feeds into trustworthy, contactless enforcement — with India-tuned detection, human review, and legally admissible evidence.*
 
 **Winning submission position:**  
 *The detector is not the product. The product is a trustworthy evidence workflow that BTP can plug into ITMS/ASTraM without increasing wrongful challans, privacy risk, or manual workload.*
@@ -120,7 +120,7 @@ Concept note + 10-slide deck + 2-minute video + a lightweight clickable **Eviden
 
 ## 4. Why our approach is unique
 
-| Generic team | Our team (SafeSight EN) |
+| Generic team | Our team (Drishaak) |
 |--------------|-------------------------|
 | YOLOv8 helmet detect | **India-tuned** RT-DETRv2 / YOLOv11 on **UVH-26** (Bengaluru CCTV data) |
 | EasyOCR plate | **RTO-format validated ANPR** (KA series, BH series, regex correction) |
@@ -328,7 +328,7 @@ Each confirmed violation produces an **Evidence Package (EP)**:
   "plate": "KA01XX1234",
   "annotated_image_path": "...",
   "crop_paths": ["..."],
-  "model_version": "safesight-en-v1.0",
+  "model_version": "drishaak-v1.0",
   "sha256_full_frame": "...",
   "sha256_evidence_bundle": "...",
   "review_status": "pending_human"
@@ -404,7 +404,7 @@ Each confirmed violation produces an **Evidence Package (EP)**:
 
 | Existing system | Our integration |
 |-----------------|-----------------|
-| **ITMS / ITeMS** (50 junctions, 250 ANPR + 80 RLVD) | SafeSight EN = next-gen detection module for scale to 500 |
+| **ITMS / ITeMS** (50 junctions, 250 ANPR + 80 RLVD) | Drishaak = next-gen detection module for scale to 500 |
 | **ASTraM** (9,000-camera big-data platform, BTP+Arcadis, Jan 2024) | Violation feed → ASTraM 15-min batched alerts to officers; junction scorecards |
 | **Smart Enforcement Center** | Evidence packages → human review → e-Challan |
 | **Safe City cameras** (~2,800 used in UVH-26) | Training data source + deployment target |
@@ -473,7 +473,7 @@ Each confirmed violation produces an **Evidence Package (EP)**:
 
 ## 10. Submission package checklist
 
-- [ ] **Title:** SafeSight EN: Responsible Edge Enforcement for Bengaluru
+- [ ] **Title:** Drishaak: Responsible Edge Enforcement for Bengaluru
 - [ ] **Description** (HackerEarth form)
 - [ ] **Theme:** PS3 selected
 - [ ] **Presentation PDF** (10–12 slides)
@@ -533,7 +533,7 @@ Each confirmed violation produces an **Evidence Package (EP)**:
 
 Before locking, team should agree on:
 
-1. **Product name** — SafeSight EN or your own?
+1. **Product name** — Drishaak or your own?
 2. **Headline USP** — Legal/privacy vs culturally-safe helmet vs ASTraM integration?
 3. **Build scope for Jun 21** — PDF only vs PDF + mini Streamlit demo?
 4. **Who owns** — CV/model, deck/video, legal-privacy section, integration story?
@@ -561,7 +561,7 @@ Before locking, team should agree on:
 
 1. **Problem** — Contactless enforcement is scaling, but trust and fairness must scale with it
 2. **Why generic AI fails** — Indian traffic, cultural headwear, messy plates, rain/night/occlusion
-3. **Solution** — SafeSight EN: detection + privacy + evidence + human review
+3. **Solution** — Drishaak: detection + privacy + evidence + human review
 4. **Live demo** — Image → annotation → privacy blur → SHA-256 evidence card → reviewer decision
 5. **India-tuned detection** — UVH-26 / RT-DETRv2 / YOLOv11 / IDD
 6. **Violation coverage** — 7 violations; Phase 1 helmet + ANPR; Phase 2 red-light/stop-line/wrong-side

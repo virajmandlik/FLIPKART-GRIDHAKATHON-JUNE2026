@@ -42,7 +42,7 @@ export default function Hero() {
 
         <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
-          SafeSight EN turns ordinary CCTV into a <span className="text-white font-semibold">privacy-first, legally-admissible</span> enforcement
+          Drishaak turns ordinary CCTV into a <span className="text-white font-semibold">privacy-first, legally-admissible</span> enforcement
           pipeline — detection at the edge, a human in the loop, and a tamper-proof evidence trail. Watch the full journey, front-stage and back-stage.
         </motion.p>
 
