@@ -1,3 +1,4 @@
+// VlmRecheckPanel.tsx
 import { useState } from "react";
 import { m } from "framer-motion";
 import { Bot, CheckCircle2, Loader2, MessageSquareQuote } from "lucide-react";
@@ -37,15 +38,13 @@ export default function VlmRecheckPanel({ confidence, onRouted }: Props) {
     <m.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-2xl bg-violet-500/10 p-5 ring-1 ring-violet-400/30"
+      className="rounded-xl border border-white/[0.08] p-5"
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-xl bg-violet-500/20 ring-1 ring-violet-400/40">
-            <Bot className="h-5 w-5 text-violet-300" />
-          </span>
+          <Bot className="h-4 w-4 text-violet-300" />
           <div>
-            <h4 className="font-bold text-white">Qwen3-VL second opinion</h4>
+            <h4 className="text-sm font-semibold text-white">Qwen3-VL second opinion</h4>
             <p className="text-xs text-slate-500">Borderline confidence · {pct}% · VLM recheck path</p>
           </div>
         </div>
@@ -56,7 +55,7 @@ export default function VlmRecheckPanel({ confidence, onRouted }: Props) {
         <button
           type="button"
           onClick={runRecheck}
-          className="mt-4 inline-flex items-center gap-2 rounded-lg bg-violet-500/20 px-3 py-2 text-xs font-bold text-violet-200 ring-1 ring-violet-400/40 hover:bg-violet-500/30"
+          className="mt-4 inline-flex items-center gap-2 border-t border-white/[0.06] pt-4 text-xs font-semibold text-violet-300 hover:text-violet-200"
         >
           <MessageSquareQuote className="h-3.5 w-3.5" />
           Run VLM recheck
@@ -64,7 +63,7 @@ export default function VlmRecheckPanel({ confidence, onRouted }: Props) {
       )}
 
       {phase === "thinking" && (
-        <div className="mt-4 flex items-center gap-2 text-sm text-violet-200">
+        <div className="mt-4 flex items-center gap-2 border-t border-white/[0.06] pt-4 text-sm text-violet-200">
           <Loader2 className="h-4 w-4 animate-spin" />
           Analysing frame crops with Qwen3-VL…
         </div>
@@ -74,10 +73,10 @@ export default function VlmRecheckPanel({ confidence, onRouted }: Props) {
         <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="mt-4 space-y-3"
+          className="mt-4 space-y-3 border-t border-white/[0.06] pt-4"
         >
           <p className="text-sm leading-relaxed text-slate-300">{rationale}</p>
-          <div className="flex items-center gap-2 rounded-lg bg-saffron/10 px-3 py-2 text-xs font-semibold text-saffron ring-1 ring-saffron/30">
+          <div className="flex items-center gap-2 text-xs font-medium text-saffron">
             <CheckCircle2 className="h-4 w-4" />
             Routed to human review queue · officer sign-off required
           </div>

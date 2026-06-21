@@ -84,7 +84,7 @@ export default function LayerJourney() {
       <div className="section-pad">
         <SectionTitle
           kicker="Pipeline Journey · UVH-26"
-          title={<>Five layers. <span className="text-gradient">One evidence chain.</span></>}
+          title={<>Five layers. <span className="text-saffron">One evidence chain.</span></>}
           sub="Golden path: Silk Board → Marathahalli · BLR_CAM_023 · KA01AB1234. Auto-play walks L1 ingest through L3 agentic validation."
         />
 

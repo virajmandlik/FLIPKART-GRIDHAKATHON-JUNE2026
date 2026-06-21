@@ -1,3 +1,4 @@
+// RepeatOffenderCard.tsx
 import { motion } from "framer-motion";
 import { AlertOctagon, Car, MapPin } from "lucide-react";
 import { PRIMARY_OFFENDER, type RepeatOffender } from "../../data/repeatOffenders";
@@ -20,32 +21,31 @@ export default function RepeatOffenderCard({ offender = PRIMARY_OFFENDER }: Prop
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-2xl glass p-5 ring-1 ring-danger/25"
+      className="rounded-xl border border-white/[0.08] p-5"
     >
       <div className="flex items-start gap-3">
-        <span className="grid h-10 w-10 place-items-center rounded-xl bg-danger/15 ring-1 ring-danger/40">
-          <AlertOctagon className="h-5 w-5 text-danger" />
-        </span>
+        <AlertOctagon className="h-4 w-4 text-danger" />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <h4 className="font-bold text-white">Repeat offender</h4>
+            <h4 className="text-sm font-semibold text-white">Repeat offender</h4>
             {offender.flaggedForDeployment && <Pill tone="danger">Deploy flag</Pill>}
           </div>
-          <p className="mt-1 text-xs text-slate-500">Vishal intelligence · corridor hotlist</p>
+          <p className="mt-1 text-xs text-slate-500">Corridor hotlist · auto-flagged</p>
         </div>
       </div>
 
-      <div className="mt-4 rounded-xl bg-saffron/10 px-4 py-3 ring-1 ring-saffron/30">
-        <div className="font-mono text-xl font-extrabold tracking-wider text-white">{offender.plate}</div>
-        <div className="mt-1 flex items-center gap-2 text-xs text-slate-400">
-          <Car className="h-3.5 w-3.5" /> {offender.vehicleType}
-          <span>·</span>
-          <span className="font-bold text-danger">{offender.violationCount} violations</span>
+      <div className="mt-4 flex items-baseline justify-between border-t border-white/[0.06] pt-4">
+        <div>
+          <div className="font-mono text-xl font-semibold tracking-wide text-white">{offender.plate}</div>
+          <div className="mt-1 flex items-center gap-2 text-xs text-slate-400">
+            <Car className="h-3.5 w-3.5" /> {offender.vehicleType}
+          </div>
         </div>
+        <span className="text-sm font-semibold text-danger">{offender.violationCount} violations</span>
       </div>
 
-      <div className="mt-3 space-y-2 text-xs">
-        <div className="flex items-center gap-2 text-slate-400">
+      <div className="mt-3 space-y-1.5 text-xs text-slate-400">
+        <div className="flex items-center gap-2">
           <MapPin className="h-3.5 w-3.5 text-teal" />
           {offender.lastLocation}
         </div>
@@ -54,17 +54,17 @@ export default function RepeatOffenderCard({ offender = PRIMARY_OFFENDER }: Prop
         </div>
       </div>
 
-      <div className="mt-3 flex flex-wrap gap-2">
+      <div className="mt-3 flex flex-wrap gap-3">
         {offender.topViolations.map((v) => (
-          <span key={v} className="rounded-md bg-white/5 px-2 py-1 text-[11px] font-semibold text-slate-300">
+          <span key={v} className="text-[11px] text-slate-400">
             {VIOLATION_LABELS[v] ?? v}
           </span>
         ))}
       </div>
 
-      <div className="mt-4 flex items-center justify-between rounded-lg bg-white/[0.03] px-3 py-2">
+      <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-3">
         <span className="text-[10px] uppercase tracking-wider text-slate-500">Risk score</span>
-        <span className="font-mono text-sm font-bold text-danger">{(offender.riskScore * 100).toFixed(0)}</span>
+        <span className="font-mono text-sm font-semibold text-danger">{(offender.riskScore * 100).toFixed(0)}</span>
       </div>
     </motion.div>
   );

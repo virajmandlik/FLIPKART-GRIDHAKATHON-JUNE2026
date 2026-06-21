@@ -1,3 +1,4 @@
+// ExplainabilityPanel.tsx
 import { motion } from "framer-motion";
 import { Brain, Gauge, ListChecks } from "lucide-react";
 import { Pill } from "../ui";
@@ -19,14 +20,12 @@ export default function ExplainabilityPanel({ explanation, falsePositiveRisk, ov
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-2xl glass p-5 ring-1 ring-teal/20"
+      className="rounded-xl border border-white/[0.08] p-5"
     >
       <div className="flex flex-wrap items-center gap-3">
-        <span className="grid h-10 w-10 place-items-center rounded-xl bg-teal/15 ring-1 ring-teal/40">
-          <Brain className="h-5 w-5 text-teal" />
-        </span>
+        <Brain className="h-4 w-4 text-teal" />
         <div>
-          <h4 className="font-bold text-white">Vishal · Explainability</h4>
+          <h4 className="text-sm font-semibold text-white">Explainability</h4>
           <p className="text-xs text-slate-500">Agentic chain-of-thought for officer review</p>
         </div>
         <div className="ml-auto flex flex-wrap gap-2">
@@ -40,17 +39,17 @@ export default function ExplainabilityPanel({ explanation, falsePositiveRisk, ov
         </div>
       </div>
 
-      <ul className="mt-4 space-y-2">
+      <ul className="mt-4 space-y-2 border-t border-white/[0.06] pt-4">
         {explanation.map((step, i) => (
           <motion.li
             key={step}
             initial={{ opacity: 0, x: -8 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.08 }}
-            className="flex items-start gap-3 rounded-lg bg-white/[0.02] px-3 py-2"
+            className="flex items-start gap-3 text-sm text-slate-300"
           >
-            <ListChecks className="mt-0.5 h-4 w-4 shrink-0 text-teal" />
-            <span className="text-sm text-slate-300">{step}</span>
+            <ListChecks className="mt-0.5 h-4 w-4 shrink-0 text-slate-500" />
+            <span>{step}</span>
           </motion.li>
         ))}
       </ul>

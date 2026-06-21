@@ -100,7 +100,7 @@ function JourneyModePanel() {
 
           kicker="5-layer journey · UVH-26"
 
-          title={<>Synced scenario · <span className="text-gradient">{scenario.title}</span></>}
+          title={<>Synced scenario · <span className="text-saffron">{scenario.title}</span></>}
 
           sub="Classic 9-step pipeline is available via toggle. Five-layer mode opens the full Pipeline Journey with the selected scenario context."
 
@@ -266,7 +266,7 @@ function ArchitectureTab() {
 
           kicker="System architecture"
 
-          title={<>Five layers · <span className="text-gradient">edge to command</span></>}
+          title={<>Five layers · <span className="text-saffron">edge to command</span></>}
 
           sub="UVH-26 pipeline from pole-side ingest to BTP Smart Enforcement Center. Click any layer to walk the Pipeline Journey."
 
@@ -354,7 +354,7 @@ function CommandCenterTab() {
 
           kicker="Layer 5 · Operations"
 
-          title={<>Violation intel · <span className="text-gradient">deployment windows</span></>}
+          title={<>Violation intel · <span className="text-saffron">deployment windows</span></>}
 
           sub="Junction heatmap from live edge nodes — Silk Board, Marathahalli, Hebbal, KR Puram. Officer-reviewed; no auto-fines."
 
@@ -392,14 +392,14 @@ function EvidenceReviewTab() {
 
             kicker="BTP evidence & review"
 
-            title={<>Court-ready packet · <span className="text-gradient">KA01 AB 1234</span></>}
+            title={<>Court-ready packet · <span className="text-saffron">KA01 AB 1234</span></>}
 
             sub="BSA 2023 S.63(4) admissibility path · DPDP-minimised frames · officer sign-off on every challan."
 
           />
 
           <span className="stamp-verified">Verified chain</span>
-
+ 
         </div>
 
         <Layer4EvidencePanel />

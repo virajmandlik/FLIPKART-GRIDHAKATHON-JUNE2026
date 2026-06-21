@@ -15,7 +15,7 @@ export default function Problem() {
       <div className="section-pad">
         <SectionTitle
           kicker="The reality on Bengaluru roads"
-          title={<>Detection is the easy part. <span className="text-slate-500">Trust is the hard part.</span></>}
+          title={<>Detection is the easy part. <span className="text-slate-400">Trust is the hard part.</span></>}
           sub="Every team can draw a bounding box. The reason enforcement programs stall is fairness, privacy and legal defensibility — that's exactly what SafeSight EN is built around."
         />
 

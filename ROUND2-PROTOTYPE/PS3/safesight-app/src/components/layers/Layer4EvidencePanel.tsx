@@ -1,3 +1,4 @@
+// Layer4EvidencePanel.tsx
 import { Fingerprint, Lock, ShieldCheck } from "lucide-react";
 import { useScenario } from "../../context/ScenarioContext";
 import { LAYER3_OUTPUT } from "../../data/layerOutputs";
@@ -31,26 +32,13 @@ export default function Layer4EvidencePanel() {
   return (
     <div className="space-y-6">
       <div className="grid gap-3 sm:grid-cols-3">
-        <ComplianceCard
-          icon={Lock}
-          title="DPDP minimisation"
-          detail={`${evidence.facesBlurred} faces blurred · ${evidence.platesBlurred} non-violator plates masked`}
-        />
-        <ComplianceCard
-          icon={Fingerprint}
-          title="SHA-256 integrity"
-          detail={evidence.frameSha256}
-          mono
-        />
-        <ComplianceCard
-          icon={ShieldCheck}
-          title="BSA 2023 S.63(4)"
-          detail="Electronic record admissibility · certificate path for Karnataka courts"
-        />
+        <ComplianceCard icon={Lock} title="DPDP minimisation" detail={`${evidence.facesBlurred} faces blurred · ${evidence.platesBlurred} non-violator plates masked`} />
+        <ComplianceCard icon={Fingerprint} title="SHA-256 integrity" detail={evidence.frameSha256} mono />
+        <ComplianceCard icon={ShieldCheck} title="BSA 2023 S.63(4)" detail="Electronic record admissibility · certificate path for Karnataka courts" />
       </div>
 
       {isPagdiClear && (
-        <div className="rounded-md border border-ok/25 bg-ok/5 px-4 py-3">
+        <div className="border-t border-white/[0.08] pt-4">
           <Pill tone="ok">AUTO-CLEARED · PAGDI EXEMPT</Pill>
           <p className="mt-2 text-sm text-slate-300">
             Headwear classified as Pagdi — MV Act §129 exemption. No challan. Culturally fair classifier.
@@ -58,7 +46,7 @@ export default function Layer4EvidencePanel() {
         </div>
       )}
 
-      <section className="gov-card overflow-hidden">
+      <section className="rounded-xl border border-white/[0.08] overflow-hidden">
         <div className="flex border-b border-white/[0.06]">
           <span className="folder-tab folder-tab-active">Confidence routing</span>
           <span className="folder-tab opacity-50">Audit trail</span>
@@ -77,8 +65,8 @@ export default function Layer4EvidencePanel() {
         <ReprocessQueuePanel />
       </div>
 
-      <div className="gov-card p-4">
-        <div className="gov-label">Sealed event record</div>
+      <div className="rounded-xl border border-white/[0.08] p-4">
+        <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Sealed event record</div>
         <dl className="mt-3 space-y-2 border-l-2 border-saffron/30 pl-4 font-mono text-xs">
           <Row label="event_id" value={data.event_id} />
           <Row label="camera" value={data.camera_id} />
@@ -91,19 +79,9 @@ export default function Layer4EvidencePanel() {
   );
 }
 
-function ComplianceCard({
-  icon: Icon,
-  title,
-  detail,
-  mono,
-}: {
-  icon: typeof Lock;
-  title: string;
-  detail: string;
-  mono?: boolean;
-}) {
+function ComplianceCard({ icon: Icon, title, detail, mono }: { icon: typeof Lock; title: string; detail: string; mono?: boolean }) {
   return (
-    <div className="gov-card p-4">
+    <div className="rounded-xl border border-white/[0.08] p-4">
       <div className="flex items-center gap-2 border-b border-white/[0.06] pb-2">
         <Icon className="h-4 w-4 text-teal" />
         <span className="text-xs font-semibold text-white">{title}</span>

@@ -1,159 +1,157 @@
-import { motion } from "framer-motion";
-import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-} from "recharts";
-import { MapPin } from "lucide-react";
-import {
-  DEPLOYMENT_RECOMMENDATIONS,
-  JUNCTION_MAP_FOCUS,
-  type DeploymentRecommendation,
-} from "../../data/enforcementRecommendations";
-import { EDGE_NODES } from "../../data/bengaluruDeployment";
-import BengaluruMapSvg, { violationHeat } from "../shared/BengaluruMapSvg";
-import { Pill } from "../ui";
-import PoliceDeploymentWidget from "../vishal/PoliceDeploymentWidget";
+// PdfEvidenceMock.tsx
+import { useMemo, useState } from "react";
+import { m } from "framer-motion";
+import { Download, FileText, Shield } from "lucide-react";
+import { LAYER3_OUTPUT } from "../../data/layerOutputs";
+import { AUTO_VERIFIED_EVENT } from "../../data/reviewQueues";
 
-const PEAK_HOURS = [
-  { hour: "06", violations: 42 },
-  { hour: "08", violations: 128 },
-  { hour: "09", violations: 186 },
-  { hour: "10", violations: 164 },
-  { hour: "11", violations: 142 },
-  { hour: "17", violations: 198 },
-  { hour: "18", violations: 224 },
-  { hour: "19", violations: 176 },
-  { hour: "20", violations: 98 },
-];
+interface Props { compact?: boolean }
 
-const HEAT_NODES = EDGE_NODES.filter((n) =>
-  ["silk-board", "marathahalli", "hebbal", "kr-puram", "electronic-city"].includes(n.id)
-).map((n) => ({ ...n, heat: violationHeat(n.violations24h) }));
+export default function PdfEvidenceMock({ compact }: Props) {
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const data = LAYER3_OUTPUT;
+  const evidence = AUTO_VERIFIED_EVENT;
 
-const tooltipStyle = {
-  background: "#0E1016",
-  border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: 8,
-  color: "#fff",
-  fontSize: 11,
-};
+  const previewLines = useMemo(
+    () => [
+      "BENGALURU TRAFFIC POLICE — EVIDENCE CERTIFICATE",
+      "Bharatiya Sakshya Adhiniyam 2023 · Section 63(4)",
+      "────────────────────────────────────────",
+      `Event ID: ${data.event_id}`,
+      `Camera: ${data.camera_id} · ${data.junction_id}`,
+      `Location: Silk Board → Marathahalli, Bengaluru Urban`,
+      `Timestamp: ${data.timestamp}`,
+      `Registration (KA): ${data.license_plate.plate_number}`,
+      `Overall confidence: ${(data.overall_confidence * 100).toFixed(0)}%`,
+      "",
+      "Violations detected:",
+      ...data.violations.map((v) => `  • ${v.type.replace(/_/g, " ")} (${(v.confidence * 100).toFixed(0)}%)`),
+      "",
+      "DPDP compliance:",
+      `  • Faces blurred: ${evidence.facesBlurred}`,
+      `  • Plates masked (non-violator): ${evidence.platesBlurred}`,
+      "",
+      `SHA-256: ${evidence.frameSha256.slice(0, 32)}...`,
+      "",
+      data.agentic_validation.summary,
+      "",
+      "Officer sign-off: _________________________  (BTP)",
+      "SafeSight EN · UVH-26 · No auto-fines",
+    ],
+    [data, evidence]
+  );
 
-interface Props {
-  onJunctionFocus?: (nodeId: string, zoomIdx: number) => void;
-}
+  const generatePdf = async () => {
+    const { jsPDF } = await import("jspdf");
+    const doc = new jsPDF({ unit: "mm", format: "a4" });
+    const margin = 15;
+    let y = margin;
 
-export default function Layer5CommandPanel({ onJunctionFocus }: Props) {
-  const handleDeploymentClick = (rec: DeploymentRecommendation) => {
-    const focus = JUNCTION_MAP_FOCUS[rec.id];
-    if (focus && onJunctionFocus) {
-      onJunctionFocus(focus.nodeId, focus.zoomIdx);
-    }
+    doc.setFillColor(255, 153, 51);
+    doc.rect(0, 0, 210, 24, "F");
+    doc.setTextColor(10, 11, 15);
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("BENGALURU TRAFFIC POLICE", margin, 10);
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "normal");
+    doc.text("Evidence Certificate · BSA 2023 S.63(4) · KA jurisdiction", margin, 17);
+
+    y = 34;
+    doc.setTextColor(40, 40, 40);
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.text("EVIDENCE METADATA", margin, y);
+    y += 6;
+    doc.setFont("helvetica", "normal");
+
+    const fields: [string, string][] = [
+      ["Event ID", data.event_id],
+      ["Camera", `${data.camera_id} · ${data.junction_id}`],
+      ["Location", "Silk Board → Marathahalli, Bengaluru"],
+      ["Timestamp (UTC)", data.timestamp],
+      ["Registration (KA)", data.license_plate.plate_number],
+      ["OCR Engine", data.license_plate.ocr_engine],
+      ["Overall Confidence", `${(data.overall_confidence * 100).toFixed(0)}%`],
+      ["Review Status", data.review_status.replace(/_/g, " ")],
+    ];
+
+    fields.forEach(([label, value]) => {
+      doc.setFont("helvetica", "bold");
+      doc.text(`${label}:`, margin, y);
+      doc.setFont("helvetica", "normal");
+      doc.text(value, margin + 45, y);
+      y += 5;
+    });
+
+    y += 4;
+    doc.setFont("helvetica", "bold");
+    doc.text("VIOLATIONS", margin, y);
+    y += 5;
+    doc.setFont("helvetica", "normal");
+    data.violations.forEach((v) => {
+      doc.text(`• ${v.type.replace(/_/g, " ")} — ${(v.confidence * 100).toFixed(0)}%`, margin + 2, y);
+      y += 5;
+    });
+
+    y += 4;
+    doc.setFont("helvetica", "bold");
+    doc.text("SHA-256 INTEGRITY SEAL", margin, y);
+    y += 5;
+    doc.setFont("courier", "normal");
+    doc.setFontSize(7);
+    doc.text(evidence.frameSha256, margin, y, { maxWidth: 180 });
+    y += 14;
+    doc.setFontSize(8);
+    doc.setTextColor(100, 100, 100);
+    doc.text("Officer sign-off required · Parivahan e-Challan on approval", margin, y);
+
+    doc.save(`BTP-Evidence-${data.license_plate.plate_number}-${data.event_id}.pdf`);
   };
 
   return (
-    <div className="space-y-5">
-      <div className="grid gap-4 sm:grid-cols-3">
-        <KpiCard label="Challans issued (7d)" value="847" sub="Parivahan · officer signed" />
-        <KpiCard label="False-challan rate" value="<2%" sub="Down from 4% baseline" highlight />
-        <KpiCard label="Auto-cleared (Pagdi etc.)" value="58" sub="Cultural fairness path" />
-      </div>
-
-      <div className="grid gap-5 lg:grid-cols-2">
-        <div className="gov-card p-4">
-          <div className="mb-3 flex items-center justify-between">
+    <m.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="rounded-xl border border-white/[0.08] overflow-hidden">
+      <div className="border-b border-white/[0.06] px-4 py-3">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <FileText className="h-4 w-4 text-saffron" />
             <div>
-              <div className="gov-label">Violation heatmap</div>
-              <h4 className="font-semibold text-white">Bengaluru junction intensity</h4>
-            </div>
-            <Pill tone="danger">Silk Board peak</Pill>
-          </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-md border border-white/[0.06] bg-ink-950">
-            <BengaluruMapSvg nodes={HEAT_NODES} heatmapMode showConnections={false} />
-            <div className="absolute bottom-2 left-2 flex items-center gap-1.5 rounded border border-white/[0.08] bg-ink-950/90 px-2 py-1 text-[10px] text-slate-400">
-              <MapPin className="h-3 w-3 text-saffron" />
-              BLR_CAM_023 · Marathahalli → Silk Board corridor
-            </div>
-            <div className="absolute right-2 top-2 rounded border border-white/[0.08] bg-ink-950/90 px-2 py-1 text-[10px]">
-              <span className="text-slate-500">ASTraM</span>
-              <span className="ml-1 font-semibold text-teal">sync</span>
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Court exhibit</div>
+              <h4 className="text-sm font-semibold text-white">BTP Evidence Certificate</h4>
             </div>
           </div>
-          <p className="mt-2 text-[11px] text-slate-500">
-            Node size ∝ 24h violations · Hebbal, KR Puram, Electronic City on pilot mesh.
-          </p>
-        </div>
-
-        <div className="gov-card p-4">
-          <div className="gov-label">Peak hours · IST</div>
-          <h4 className="mb-3 font-semibold text-white">Silk Board & Marathahalli windows</h4>
-          <ResponsiveContainer width="100%" height={200}>
-            <LineChart data={PEAK_HOURS} margin={{ left: -16, right: 4 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-              <XAxis dataKey="hour" tick={{ fill: "#64748b", fontSize: 10 }} tickFormatter={(h) => `${h}:00`} />
-              <YAxis tick={{ fill: "#64748b", fontSize: 10 }} />
-              <Tooltip contentStyle={tooltipStyle} labelFormatter={(h) => `${h}:00 IST`} />
-              <Line type="monotone" dataKey="violations" stroke="#FF9933" strokeWidth={2} dot={{ fill: "#FF9933", r: 2 }} />
-            </LineChart>
-          </ResponsiveContainer>
-          <p className="text-[11px] text-slate-500">
-            Deploy 09:00–12:00 & 17:00–20:00 · BTP recommendation to ASTraM.
-          </p>
-        </div>
-      </div>
-
-      <div className="grid gap-5 lg:grid-cols-2">
-        <PoliceDeploymentWidget onJunctionFocus={onJunctionFocus} />
-        <div className="gov-card p-4">
-          <div className="gov-label">Deployment queue</div>
-          <h4 className="font-semibold text-white">AI-suggested enforcement windows</h4>
-          <p className="mt-0.5 text-xs text-slate-500">Click row to zoom city map</p>
-          <div className="mt-3 space-y-1.5">
-            {DEPLOYMENT_RECOMMENDATIONS.map((rec) => (
-              <button
-                key={rec.id}
-                type="button"
-                onClick={() => handleDeploymentClick(rec)}
-                className="flex w-full items-center justify-between rounded-md border border-white/[0.06] bg-ink-900/30 px-3 py-2.5 text-left transition hover:border-teal/25 hover:bg-ink-900/50"
-              >
-                <div>
-                  <div className="text-sm font-medium text-white">{rec.junction}</div>
-                  <div className="text-[10px] text-slate-500">{rec.suggestedWindow}</div>
-                </div>
-                <Pill tone={rec.priority === "HIGH" ? "danger" : "amber"}>{rec.priority}</Pill>
+          <div className="flex flex-wrap gap-2">
+            {!compact && (
+              <button type="button" onClick={() => setPreviewOpen((o) => !o)} className="rounded border border-white/[0.08] px-3 py-1.5 text-xs font-medium text-slate-400 hover:text-white">
+                {previewOpen ? "Hide" : "Preview"}
               </button>
-            ))}
+            )}
+            <button type="button" onClick={generatePdf} className="inline-flex items-center gap-1.5 rounded bg-saffron px-3 py-1.5 text-xs font-semibold text-ink-950 hover:brightness-105">
+              <Download className="h-3.5 w-3.5" /> Download PDF
+            </button>
           </div>
         </div>
       </div>
 
-      <div className="rounded-md border border-white/[0.06] bg-ink-900/40 px-4 py-3 text-center text-[11px] text-slate-500">
-        Target &lt;2% false-challan · UVH-26 · DPDP reporting · No auto-fines — BTP officer approval required
+      <div className="border-b border-dashed border-white/[0.08] px-4 py-3">
+        <div className="flex flex-wrap items-center gap-3 text-[11px]">
+          <span className="font-semibold text-saffron">BSA S.63(4)</span>
+          <span className="text-slate-500">DPDP blur confirmed</span>
+          <span className="font-mono text-saffron">{data.license_plate.plate_number}</span>
+          <span className="stamp-verified ml-auto">Court ready</span>
+        </div>
       </div>
-    </div>
-  );
-}
 
-function KpiCard({
-  label,
-  value,
-  sub,
-  highlight,
-}: {
-  label: string;
-  value: string;
-  sub: string;
-  highlight?: boolean;
-}) {
-  return (
-    <div className={`gov-card p-4 ${highlight ? "border-ok/25" : ""}`}>
-      <div className={`text-2xl font-bold ${highlight ? "text-ok" : "text-white"}`}>{value}</div>
-      <div className="mt-0.5 text-xs text-slate-400">{label}</div>
-      <div className="mt-1 text-[10px] text-slate-500">{sub}</div>
-    </div>
+      {previewOpen && (
+        <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4">
+          <div className="rounded border border-white/[0.08] bg-ink-950 p-4">
+            <div className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+              <Shield className="h-3 w-3" /> Document preview
+            </div>
+            <pre className="max-h-56 overflow-auto font-mono text-[10px] leading-relaxed text-slate-400">{previewLines.join("\n")}</pre>
+          </div>
+        </m.div>
+      )}
+    </m.div>
   );
 }
