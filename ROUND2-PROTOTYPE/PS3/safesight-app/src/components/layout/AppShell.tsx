@@ -21,7 +21,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             </span>
             <div className="leading-tight">
               <div className="text-sm font-bold tracking-wide text-white">
-                SafeSight<span className="text-saffron"> EN</span>
+                Drish<span className="text-saffron">aak</span>
               </div>
               <div className="gov-label normal-case tracking-[0.16em]">
                 BTP · Bengaluru Urban

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,10 +12,8 @@ html {
 }
 
 body {
-  @apply bg-ink-950 text-slate-200 font-sans antialiased;
-  background-image:
-    radial-gradient(50rem 50rem at 85% -5%, rgba(20, 184, 166, 0.04), transparent 55%),
-    radial-gradient(40rem 40rem at -5% 15%, rgba(255, 153, 51, 0.035), transparent 50%);
+  @apply bg-ss-bg text-ss-muted font-sans antialiased;
+  background-color: #050505;
   overflow-x: hidden;
 }
 
@@ -98,4 +97,142 @@ body {
 
 .eyebrow {
   @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-teal/80;
+}
+
+/* ============================================================= */
+/* Drishaak — Premium storytelling design system             */
+/* ============================================================= */
+
+.ss-shell {
+  background:
+    radial-gradient(60rem 60rem at 80% -10%, rgba(245, 184, 74, 0.05), transparent 60%),
+    radial-gradient(50rem 50rem at -10% 30%, rgba(126, 217, 87, 0.035), transparent 55%),
+    #050505;
+}
+
+/* Section padding / max width */
+.ss-pad {
+  @apply mx-auto w-full max-w-6xl px-6 sm:px-8 lg:px-10;
+}
+
+.ss-section {
+  @apply relative py-24 sm:py-32;
+}
+
+/* Premium card surface */
+.ss-card {
+  background: #101114;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+}
+
+.ss-card-soft {
+  background: rgba(255, 255, 255, 0.018);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 1.25rem;
+}
+
+.ss-glass {
+  background: rgba(16, 17, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.ss-hairline {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Eyebrow / kicker for new sections */
+.ss-kicker {
+  @apply inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-ss-muted/80;
+}
+
+.ss-kicker-dot {
+  @apply h-1.5 w-1.5 rounded-full bg-ss-gold;
+}
+
+/* Display headings */
+.ss-display {
+  @apply font-extrabold tracking-tight text-white;
+  letter-spacing: -0.02em;
+}
+
+.ss-gold-text {
+  background: linear-gradient(120deg, #f5b84a 0%, #ffd98a 50%, #f5b84a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ss-muted {
+  color: #b5b5b5;
+}
+
+/* Mono chip */
+.ss-mono {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+.ss-chip {
+  @apply inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold;
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: #b5b5b5;
+}
+
+/* Buttons */
+.ss-btn-gold {
+  @apply inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition;
+  background: #f5b84a;
+  color: #0a0a0a;
+}
+.ss-btn-gold:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 0 32px -6px rgba(245, 184, 74, 0.55);
+}
+
+.ss-btn-ghost {
+  @apply inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.02);
+}
+.ss-btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Sticky nav blur */
+.ss-nav {
+  background: rgba(5, 5, 5, 0.72);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Connector line for flow diagrams */
+.ss-flow-line {
+  stroke: rgba(245, 184, 74, 0.5);
+  stroke-width: 2;
+  stroke-dasharray: 6 8;
+  fill: none;
+}
+
+/* Subtle dotted texture */
+.ss-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Vignette top/bottom fade for sections */
+.ss-fade-edges {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }

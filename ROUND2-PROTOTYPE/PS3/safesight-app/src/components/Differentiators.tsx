@@ -30,7 +30,7 @@ export default function Differentiators() {
         <SectionTitle
           kicker="Why this wins, not just works"
           title={<>The edge over a <span className="text-slate-500">generic YOLO box</span></>}
-          sub="Anyone can detect a violation. SafeSight EN is engineered for the six things that decide whether an enforcement system actually gets deployed in India."
+          sub="Anyone can detect a violation. Drishaak is engineered for the six things that decide whether an enforcement system actually gets deployed in India."
         />
 
         <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

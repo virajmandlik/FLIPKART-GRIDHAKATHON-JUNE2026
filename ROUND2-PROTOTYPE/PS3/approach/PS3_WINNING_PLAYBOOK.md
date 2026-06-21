@@ -2,7 +2,7 @@
 
 ## Gridlock Hackathon 2.0 · Flipkart × Bengaluru Traffic Police · Theme 3
 
-**Project:** SafeSight EN — Responsible Edge Enforcement for Bengaluru
+**Project:** Drishaak — Responsible Edge Enforcement for Bengaluru
 **Compiled:** 18 Jun 2026 · Built from 5 parallel deep-research streams (tech, hackathon-playbook, BTP domain, legal, competitor)
 **Companion doc:** `PS3_FULL_APPROACH.md` (technical deep-dive). This file is the all-in-one battle plan.
 
@@ -153,7 +153,7 @@ Peer-reviewed BTP data: in 2022, **72–74% of dead two-wheeler users WERE "wear
 
 One idea per slide. Financials/architecture/extra metrics go in an APPENDIX. Judges spend ~3–4 min.
 
-1. **Title + hook:** "SafeSight EN — Bengaluru's cameras, finally trustworthy." + your one number.
+1. **Title + hook:** "Drishaak — Bengaluru's cameras, finally trustworthy." + your one number.
 2. **The shift (status quo pain):** 9,000 cameras, 87% contactless — but 99.9% only after manual re-check, and ~34% raw challans wrong elsewhere. One stat + one human image (citizen wrongly fined).
 3. **Solution (one sentence + a picture):** "We turn raw detections into India-accurate, privacy-safe, court-ready evidence — with a human in the loop."
 4. **DEMO (hero slide):** screenshot of the evidence card → on stage this becomes the live demo.
@@ -169,10 +169,10 @@ One idea per slide. Financials/architecture/extra metrics go in an APPENDIX. Jud
 ## 8. THE 2-MINUTE VIDEO SCRIPT (record the demo FIRST)
 
 - **0:00–0:10 HOOK (cold open):** no intros. *"This Bengaluru rider was fined twice for a seatbelt he was wearing. The AI hallucinated it. Multiply that by 21,000 challans a day."*
-- **0:10–0:30 SOLUTION in one breath:** what SafeSight EN does — detect → mask → hash → human review.
+- **0:10–0:30 SOLUTION in one breath:** what Drishaak does — detect → mask → hash → human review.
 - **0:30–1:30 THE DEMO (60s, the heart):** golden path on a real Bengaluru frame — detection → privacy blur → evidence card with SHA-256 → reviewer approves → dashboard updates. Slow, deliberate clicks.
 - **1:30–1:50 PROOF:** the one number + 1–2 facts ("on 5 sample frames it flagged X, masked all bystanders, generated court-ready evidence for each").
-- **1:50–2:00 CLOSE/VISION:** *"Next step: a one-corridor pilot with ASTraM. SafeSight EN makes Bengaluru's existing cameras finally trustworthy."* Hold the final dashboard+metric frame.
+- **1:50–2:00 CLOSE/VISION:** *"Next step: a one-corridor pilot with ASTraM. Drishaak makes Bengaluru's existing cameras finally trustworthy."* Hold the final dashboard+metric frame.
 
 **Rules:** voiceover over screen recording; rehearse 5x; **cut a backup recording**; the last 3 seconds are what gets remembered — end on the metric, never on a bug apology.
 

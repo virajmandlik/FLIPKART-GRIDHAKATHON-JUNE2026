@@ -1,5 +1,5 @@
 /**
- * Five-layer SafeSight EN pipeline definitions for the Pipeline Journey tab.
+ * Five-layer Drishaak pipeline definitions for the Pipeline Journey tab.
  */
 import type { LucideIcon } from "lucide-react";
 import {

@@ -4,7 +4,7 @@ import { ExternalLink, X, ZoomIn } from "lucide-react";
 
 const FULL_DIAGRAM = {
   src: "/architecture/LAYER1.png",
-  title: "SafeSight EN · UVH-26 full pipeline",
+  title: "Drishaak · UVH-26 full pipeline",
   caption: "Layer 1–5 edge-to-cloud architecture (detailed engineering view)",
 };
 

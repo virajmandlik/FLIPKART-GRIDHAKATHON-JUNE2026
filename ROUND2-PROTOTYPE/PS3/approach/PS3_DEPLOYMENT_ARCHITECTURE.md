@@ -1,7 +1,7 @@
-# SafeSight EN — Deployment & Microservices Architecture
+# Drishaak — Deployment & Microservices Architecture
 
 **Problem Statement:** PS3 — Automated Photo Identification & Classification for Traffic Violations
-**Project codename:** SafeSight EN (Responsible Edge Enforcement Node for Bengaluru)
+**Project codename:** Drishaak (Responsible Edge Enforcement Node for Bengaluru)
 **Document purpose:** Production-grade deployment + microservices design. This is the "Feasibility + Scalability" deliverable for an idea-only PS3 submission. Pairs with `PS3_FULL_APPROACH.md` (solution) and `PS3_WINNING_PLAYBOOK.md` (pitch).
 **Last updated:** Jun 2026
 
@@ -41,7 +41,7 @@ These decisions are grounded in the official hackathon FAQ + site (verified Jun 
 ```
                 ┌───────────────────────────────────────────────┐
    CCTV / ANPR  │                                               │
-   poles  ───►  │              SafeSight EN system              │  ───►  e-Challan / Parivahan
+   poles  ───►  │                Drishaak system                │  ───►  e-Challan / Parivahan
    (RTSP)       │   (edge nodes + cloud enforcement platform)   │        (challan issuance)
                 │                                               │
    Signal phase │                                               │  ───►  ASTraM analytics / BATCS

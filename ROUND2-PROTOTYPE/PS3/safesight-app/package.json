@@ -1,9 +1,9 @@
 {
-  "name": "safesight-en",
+  "name": "drishaak",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "SafeSight EN - Responsible Edge Enforcement for Bengaluru (PS3 prototype frontend)",
+  "description": "Drishaak - Responsible Edge Enforcement for Bengaluru (PS3 prototype frontend)",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

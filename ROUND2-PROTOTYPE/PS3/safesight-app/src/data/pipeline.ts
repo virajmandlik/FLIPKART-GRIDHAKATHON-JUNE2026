@@ -1,5 +1,5 @@
 /**
- * Single source of truth for the SafeSight EN pipeline story.
+ * Single source of truth for the Drishaak pipeline story.
  * Components are data-driven from here so swapping mock -> real API is trivial.
  */
 import type { LucideIcon } from "lucide-react";

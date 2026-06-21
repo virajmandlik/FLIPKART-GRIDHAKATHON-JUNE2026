@@ -15,7 +15,7 @@ export default function Problem() {
         <SectionTitle
           kicker="The reality on Bengaluru roads"
           title={<>Detection is the easy part. <span className="text-slate-500">Trust is the hard part.</span></>}
-          sub="Every team can draw a bounding box. The reason enforcement programs stall is fairness, privacy and legal defensibility. SafeSight EN is built around exactly those gaps."
+          sub="Every team can draw a bounding box. The reason enforcement programs stall is fairness, privacy and legal defensibility. Drishaak is built around exactly those gaps."
         />
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
