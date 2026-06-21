@@ -1,0 +1,16 @@
+[
+    {
+        "crop_path": "C:\\Users\\HP\\Desktop\\guru2\\FLIPKART-GRIDHAKATHON-JUNE2026\\ROUND2-PROTOTYPE\\ai-backend\\number_plate\\cropped_plates\\car1_plate_1.jpg",
+        "bbox": [
+            61,
+            53,
+            179,
+            92
+        ],
+        "detection_confidence": 0.897,
+        "ocr_confidence": 0.202,
+        "number_plate": "MP04CC2680",
+        "valid": true,
+        "state": "MP"
+    }
+]
