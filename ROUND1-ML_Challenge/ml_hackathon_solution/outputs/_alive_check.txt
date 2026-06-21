@@ -1,4 +1,0 @@
-﻿run_A.log  size=834  lastWrite=02-06-2026 19:42:09  ageSec=12,677
-run_B.log  size=1424  lastWrite=02-06-2026 19:51:41  ageSec=12,105
-run_C.log  size=616  lastWrite=02-06-2026 19:49:53  ageSec=12,212
-now=06/02/2026 23:13:25
