@@ -1,6 +1,6 @@
-# Explainability Service — UML Diagrams
+# SafeSight — UML Diagrams
 
-UML for the **Explainability Service** within the *Violation Detection AI*
+UML for the **SafeSight** 
 platform. Diagrams use [Mermaid](https://mermaid.js.org/) and render on GitHub,
 in VS Code (Mermaid extension), or at [mermaid.live](https://mermaid.live).
 
