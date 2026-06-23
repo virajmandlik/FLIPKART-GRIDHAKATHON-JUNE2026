@@ -20,7 +20,7 @@ const STEPS = [
     layer: 2,
     icon: Sparkles,
     title: "Enhancement + ROI",
-    subtitle: "Restormer · RT-DETR · ROI crops",
+    subtitle: "Restormer · YOLO11 · ROI crops",
     tech: "Real-ESRGAN · ANPR prep",
   },
   {
@@ -48,7 +48,7 @@ const STEPS = [
 
 const BLACKBOX_MODELS = [
   "Restormer",
-  "RT-DETR",
+  "YOLO11",
   "PaddleOCR",
   "Helmet cls",
   "Triple rider",

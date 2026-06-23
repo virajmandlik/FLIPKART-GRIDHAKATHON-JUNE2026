@@ -41,7 +41,7 @@ export const DEMO_EVIDENCE: EvidencePacket = {
 
 export const microservices = [
   { id: "edge-ingest", tier: "edge", desc: "RTSP frame sampling" },
-  { id: "detector", tier: "edge", desc: "RT-DETRv2-S INT8" },
+  { id: "detector", tier: "edge", desc: "YOLO11 INT8" },
   { id: "tracker", tier: "edge", desc: "BoT-SORT" },
   { id: "violation-engine", tier: "edge", desc: "rule + geometry" },
   { id: "anpr", tier: "edge", desc: "OCR + RTO regex" },

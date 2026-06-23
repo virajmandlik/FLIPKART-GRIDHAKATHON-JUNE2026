@@ -1,5 +1,6 @@
 import SiteNav from "./sections/SiteNav";
 import HeroSection from "./sections/HeroSection";
+import ShowcaseSection from "./sections/ShowcaseSection";
 import ProblemSection from "./sections/ProblemSection";
 import JourneySection from "./sections/JourneySection";
 import Layer1Section from "./sections/Layer1Section";
@@ -10,6 +11,7 @@ import EvidenceSection from "./sections/EvidenceSection";
 import CommandCenterSection from "./sections/CommandCenterSection";
 import ArchitectureSection from "./sections/ArchitectureSection";
 import ImpactSection from "./sections/ImpactSection";
+import AiReadinessSection from "./sections/AiReadinessSection";
 import FinalSection from "./sections/FinalSection";
 import { ScenarioStoreProvider } from "./sections/scenarioStore";
 import CalibrationOverlay from "./sections/CalibrationOverlay";
@@ -24,6 +26,7 @@ export default function App() {
       <SiteNav />
       <main>
         <HeroSection />
+        <ShowcaseSection />
         <ProblemSection />
         <JourneySection />
         <Layer1Section />
@@ -34,6 +37,7 @@ export default function App() {
         <CommandCenterSection />
         <ArchitectureSection />
         <ImpactSection />
+        <AiReadinessSection />
         <FinalSection />
       </main>
     </div>

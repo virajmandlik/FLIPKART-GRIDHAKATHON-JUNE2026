@@ -11,6 +11,7 @@ const LINKS = [
   { id: "evidence", label: "Evidence" },
   { id: "command", label: "Command" },
   { id: "impact", label: "Impact" },
+  { id: "ai-readiness", label: "AI Readiness" },
 ];
 
 function scrollToId(id: string) {

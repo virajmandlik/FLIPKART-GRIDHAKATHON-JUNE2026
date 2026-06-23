@@ -425,7 +425,7 @@ export const SCENARIOS: Scenario[] = [
       },
       detect: {
         front: "Despite poor conditions, rider localised with SAHI small-object boost.",
-        back: "SAHI tiling + RT-DETRv2-S maintains recall in rain/shadow/motion-blur.",
+        back: "SAHI tiling + YOLO11 maintains recall in rain/shadow/motion-blur.",
       },
     },
     evidence: {
