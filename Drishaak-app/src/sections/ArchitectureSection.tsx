@@ -2,6 +2,7 @@ import { m } from "framer-motion";
 import { Camera, Cpu, Brain, Building2, Landmark } from "lucide-react";
 import { SectionHead, Reveal } from "./_ui";
 import ArchitectureBlueprint from "./ArchitectureBlueprint";
+import ModelMatrix from "./ModelMatrix";
 
 const NODES = [
   { icon: Camera, title: "Camera", sub: "Pole-side CCTV / RTSP", tone: "muted" },
@@ -69,6 +70,9 @@ export default function ArchitectureSection() {
 
           {/* Full system architecture diagram */}
           <ArchitectureBlueprint />
+
+          {/* Detection model selection matrix — YOLO11 vs RT-DETR-L */}
+          <ModelMatrix />
 
           <Reveal delay={0.2}>
             <div className="mt-12 grid gap-4 sm:grid-cols-3">

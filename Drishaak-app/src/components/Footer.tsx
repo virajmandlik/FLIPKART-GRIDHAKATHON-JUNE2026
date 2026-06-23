@@ -1,6 +1,6 @@
 import { Radar, Cpu } from "lucide-react";
 
-const STACK = ["React", "TypeScript", "Tailwind", "Framer Motion", "RT-DETRv2 (Apache-2.0)", "BoT-SORT", "Kafka", "Kubernetes", "Jetson Orin"];
+const STACK = ["React", "TypeScript", "Tailwind", "Framer Motion", "YOLO11", "BoT-SORT", "Kafka", "Kubernetes", "Jetson Orin"];
 
 export default function Footer() {
   return (

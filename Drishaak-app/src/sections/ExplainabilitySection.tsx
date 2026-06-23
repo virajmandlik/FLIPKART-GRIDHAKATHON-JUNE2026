@@ -133,6 +133,12 @@ export default function ExplainabilitySection() {
             </div>
           </Reveal>
         </div>
+
+        <p className="mt-8 text-center text-[11px] leading-relaxed text-ss-muted/70">
+          Reasoning follows a structured Chain-of-Thought — Scene → Analysis → Solution → Formatting —
+          shown to make vision-language models reliable on real traffic scenes
+          (<span className="text-ss-muted">CoT-VLM4Tar, Ren et al., 2025, arXiv:2503.01632</span>).
+        </p>
       </div>
     </section>
   );

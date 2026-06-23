@@ -37,9 +37,9 @@ export const STEPS: PipelineStep[] = [
   },
   {
     id: "detect", short: "Detect", title: "Object detection", tier: "edge",
-    service: "detector (RT-DETRv2-S)", icon: ScanSearch,
+    service: "detector (YOLO11)", icon: ScanSearch,
     frontText: "Vehicles, riders and pedestrians are localised in the frame.",
-    backText: "RT-DETRv2-S (Apache-2.0, TensorRT INT8) runs on Jetson — ~28 FPS at the edge.",
+    backText: "YOLO11 (Ultralytics Enterprise, TensorRT INT8) runs on Jetson — ~28 FPS at the edge.",
     reveal: ["boxes"],
   },
   {
